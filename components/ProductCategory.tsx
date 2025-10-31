@@ -50,7 +50,7 @@ export default function ProductCategory() {
               </h2>
 
               <button
-                className="text-[13px] font-bold hover:text-gray-lighter transition-colors flex items-center gap-2"
+                className="text-[13px] font-bold hover:text-gray-700 transition-colors flex items-center gap-2"
               >
                 SHOP
                 <ArrowRightIcon />

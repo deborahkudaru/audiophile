@@ -12,13 +12,13 @@ export default function Navbar(){
                     <Link href="/">HOME</Link>
                 </li>
                  <li>
-                    <Link href="/">HEADPHONES</Link>
+                    <Link href="/headphones">HEADPHONES</Link>
                 </li>
                  <li>
-                    <Link href="/">SPEAKERS</Link>
+                    <Link href="/speakers">SPEAKERS</Link>
                 </li>
                  <li>
-                    <Link href="/">EARPHONES</Link>
+                    <Link href="/earphones">EARPHONES</Link>
                 </li>
             </ul>
             <CartIcon />
