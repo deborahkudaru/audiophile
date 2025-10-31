@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="bg-dark text-white">
-      <nav>
+    <div className="bg-dark text-white px-20">
+      <nav className="flex justify-between py-4 items-center" >
         <div>
           <Link href="/" className="font-bold text-xl">
             audiopile
@@ -31,7 +31,7 @@ export default function Footer() {
           helping you get the most out of personal audio. Come and visit our
           demo facility - we’re open 7 days a week.
         </p>
-        <div>
+        <div className="flex gap-4">
           <a href="">
             <svg
               width="24"

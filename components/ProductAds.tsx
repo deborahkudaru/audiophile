@@ -11,21 +11,38 @@ export default function ProductAds() {
             Upgrade to premium speakers that are phenomenally built to deliver
             truly remarkable sound.
           </p>
-            <button className="bg-black text-white px-8 font-bold text-[13px] py-3">SEE PRODUCT</button>
+          <button className="bg-black text-white px-8 font-bold text-[13px] py-3">
+            SEE PRODUCT
+          </button>
         </div>
       </section>
 
-      <section className="bg-gray-light rounded-lg flex items-center gap-8 px-8 py-16 mx-6 md:mx-12">
+      <section className="bg-gray-light rounded-lg grid grid-cols-2 px-8 py-16 mx-6 md:mx-12">
         <div>
-            <h2>ZX7 SPEAKER</h2>
-            <button>SEE PRODUCT</button>
+          <h2 className="font-bold text-[28px]">ZX7 SPEAKER</h2>
+          <button className="font-bold px-8 py-3 rounded-sm text-[13px] border border-black">
+            SEE PRODUCT
+          </button>
         </div>
-         <Image src={"/images/speaker.png"} alt="" width={410.23} height={493} />
+        <Image
+          src={"/images/image-zero.png"}
+          alt=""
+          width={410.23}
+          height={493}
+        />
       </section>
 
-      <section>
-        <h2>YX1 EARPHONES</h2>
-        <button>SEE PRODUCT</button>
+      <section className="grid grid-cols-2">
+        <Image
+          src={"/images/image-one.png"}
+          alt=""
+          width={410.23}
+          height={493}
+        />
+        <div className="bg-gray-light">
+          <h2 className="text-[28px] font-bold">YX1 EARPHONES</h2>
+          <button className="border border-black px-8 py-3">SEE PRODUCT</button>
+        </div>
       </section>
     </div>
   );
