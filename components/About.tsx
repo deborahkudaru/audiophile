@@ -2,12 +2,12 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="grid grid-cols-2 px-20">
-      <div className="">
-        <h1 className="font-bold text-[40px]">
+    <div className="grid grid-cols-2 gap-16 px-20 items-center">
+      <div>
+        <h1 className="font-bold text-[40px] mb-8">
           BRINGING YOU THE <span className="text-primary">BEST</span> AUDIO GEAR
         </h1>
-        <p className="text-[15px] leading-[26px]">
+        <p className="text-[15px] leading-[26px] text-gray-600">
           Located at the heart of New York City, Audiophile is the premier store
           for high end headphones, earphones, speakers, and audio accessories.
           We have a large showroom and luxury demonstration rooms available for
@@ -16,13 +16,12 @@ export default function About() {
           best place to buy your portable audio equipment.
         </p>
       </div>
-      <div className="relative w-full h-[592px] overflow-hidden">
+      <div className="relative w-full h-[600px] rounded-lg overflow-hidden">
         <Image
           src={"/images/image-two.png"}
           alt="About Image"
-          width={1110}
-          height={592}
-          className="object-cover object-left scale-[2]"
+          fill
+          className="object-cover"
         />
       </div>
     </div>
