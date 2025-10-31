@@ -1,6 +1,6 @@
 import AlsoLike from "@/components/AlsoLike";
-import ProductAds from "/@components/ProductAds"
-import About from "/@components/About"
+import ProductAds from "@/components/ProductAds"
+import About from "@/components/About"
 import Image from "next/image";
 
 export default function ProductDetail() {
