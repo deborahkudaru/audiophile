@@ -1,3 +1,4 @@
+import ArrowRightIcon from "@/public/icons/Arrow";
 import Image from "next/image";
 
 interface Category {
@@ -26,20 +27,20 @@ const categories: Category[] = [
 
 export default function ProductCategory() {
   return (
-    <section className="w-full py-12 px-6 md:px-12 bg-gray-lighter">
+    <section className="w-full py-32 px-6 md:px-12 bg-gray-lighter">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {categories.map((category) => (
           <div
             key={category.name}
             className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 relative"
           >
-            <div className="absolute -top-10">
+            <div className="absolute -top-20 w-40 h-40 flex items-center justify-center">
               <Image
                 src={category.image}
                 alt={category.name}
                 width={160}
                 height={160}
-                className="object-contain"
+                className="object-contain w-full h-full"
               />
             </div>
 
@@ -49,9 +50,10 @@ export default function ProductCategory() {
               </h2>
 
               <button
-                className="text-[13px] font-bold hover:text-gray-lighter transition-colors"
+                className="text-[13px] font-bold hover:text-gray-lighter transition-colors flex items-center gap-2"
               >
                 SHOP
+                <ArrowRightIcon />
               </button>
             </div>
           </div>
