@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div>
-      <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 px-20">
+      <div className="">
         <h1 className="font-bold text-[40px]">
           BRINGING YOU THE <span className="text-primary">BEST</span> AUDIO GEAR
         </h1>
@@ -16,12 +16,15 @@ export default function About() {
           best place to buy your portable audio equipment.
         </p>
       </div>
-      <Image
-        src={"/images/image-two.png"}
-        alt="About Image"
-        width={1110}
-        height={592}
-      />
+      <div className="relative w-full h-[592px] overflow-hidden">
+        <Image
+          src={"/images/image-two.png"}
+          alt="About Image"
+          width={1110}
+          height={592}
+          className="object-cover object-left scale-[2]"
+        />
+      </div>
     </div>
   );
 }
