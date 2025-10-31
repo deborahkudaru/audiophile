@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Navbar(){
     return(
-        <div className="flex justify-between bg-black text-white p-4 items-center">
+        <div className="flex justify-between bg-dark text-white p-4 items-center">
             <div>
                 <Link href="/" className="font-bold text-xl">audiopile</Link>
             </div>
