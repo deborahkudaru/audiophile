@@ -27,14 +27,19 @@ const categories: Category[] = [
 
 export default function ProductCategory() {
   return (
-    <section className="w-full py-32 px-6 md:px-12 bg-gray-lighter">
+    <section className="w-full py-40 px-6 md:px-12 bg-gray-lighter">
       <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {categories.map((category) => (
           <div
             key={category.name}
             className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 relative"
           >
-            <div className="absolute -top-20 w-40 h-40 flex items-center justify-center">
+            <div
+              className="absolute -top-20 w-40 h-40 flex items-center justify-center"
+              style={{
+                filter: "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
+              }}
+            >
               <Image
                 src={category.image}
                 alt={category.name}
@@ -49,9 +54,7 @@ export default function ProductCategory() {
                 {category.name}
               </h2>
 
-              <button
-                className="text-[13px] font-bold hover:text-gray-700 transition-colors flex items-center gap-2"
-              >
+              <button className="text-[13px] font-bold hover:text-gray-700 transition-colors flex items-center gap-4 mt-4">
                 SHOP
                 <ArrowRightIcon />
               </button>
