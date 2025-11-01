@@ -60,13 +60,13 @@ export default function CartModal() {
               </p>
             </div>
             <div className="bg-gray-light flex items-center gap-3 px-3">
-              <button className="text-gray-600 hover:text-primary font-bold py-2 text-sm">
+              <button className="text-gray-600 hover:text-primary py-2 text-sm">
                 -
               </button>
               <p className="font-bold text-[13px] w-4 text-center">
                 {item.quantity}
               </p>
-              <button className="text-gray-600 hover:text-primary font-bold py-2 text-sm">
+              <button className="text-gray-600 hover:text-primary py-2 text-sm">
                 +
               </button>
             </div>
