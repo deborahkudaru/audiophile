@@ -68,7 +68,7 @@ export default function SPEAKERS() {
             }}
           >
             <Image
-              src="/images/speaker.png"
+              src="/images/image-four.png"
               alt="Speaker"
               width={291.24}
               height={350}
