@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <div className="bg-dark text-white px-6 md:px-12 lg:px-20 py-10">
+    <div className="bg-dark text-white px-6 md:px-12 lg:px-20 py-10 lg:text-left md:text-left text-center">
       <nav className="flex flex-col lg:flex-row lg:justify-between py-4 lg:items-center">
         <div className="mb-8 lg:mb-0">
           <Link href="/" className="font-bold text-xl">
@@ -92,7 +92,7 @@ export default function Footer() {
         <p className="font-medium text-[15px] text-white/50 mb-12 md:mb-0">
           Copyright 2021. All Rights Reserved
         </p>
-        <div className="flex gap-4 lg:hidden">
+        <div className="flex justify-center gap-4 lg:hidden">
           <a href="" className="hover:opacity-70 transition">
             <svg
               width="24"

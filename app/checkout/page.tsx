@@ -2,15 +2,15 @@ import Image from "next/image";
 
 export default function Checkout() {
   return (
-    <div className="bg-gray-100 min-h-screen py-16">
+    <div className="bg-gray-100 min-h-screen lg:py-16 md:py-10 py-5">
       <div className="max-w-6xl mx-auto md:px-10 px-5">
-        <button className="text-gray-600 mb-20 hover:text-primary">
+        <button className="text-gray-600 lg:mb-20 mb-10 hover:text-primary">
           Go back
         </button>
 
         <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
           {/* Left Side - Form */}
-          <div className="col-span-2 bg-white rounded-lg p-8">
+          <div className="lg:col-span-2 bg-white rounded-lg p-8">
             <h2 className="text-[32px] font-bold mb-8">CHECKOUT</h2>
 
             {/* Billing Details */}
@@ -18,7 +18,7 @@ export default function Checkout() {
               <h3 className="text-primary text-[13px] font-bold mb-4">
                 BILLING DETAILS
               </h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-[12px] font-bold mb-2 block">
                     Name
@@ -67,7 +67,7 @@ export default function Checkout() {
                   className="w-full border border-gray-300 rounded-lg px-4 py-3 text-[14px] focus:outline-none focus:border-primary"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-[12px] font-bold mb-2 block">
                     ZIP Code
@@ -106,7 +106,7 @@ export default function Checkout() {
               <h3 className="text-primary text-[13px] font-bold mb-4">
                 PAYMENT DETAILS
               </h3>
-              <div className="grid grid-cols-2 gap-4 mb-4">
+              <div className="grid md:grid-cols-2 grid-cols-1 gap-4 mb-4">
                 <label className="text-[12px] font-bold">Payment Method</label>
                 <div className="space-y-3">
                   <label className="flex items-center border border-primary-light rounded-lg px-4 py-3 cursor-pointer hover:border-primary">
@@ -127,7 +127,7 @@ export default function Checkout() {
                 </div>
               </div>
 
-              <div className="rounded-lg p-6 flex gap-4">
+              <div className="rounded-lg p-6 lg:flex gap-4 hidden">
                 <svg
                   width="48"
                   height="48"
@@ -152,9 +152,9 @@ export default function Checkout() {
             </div>
           </div>
 
-          {/* Right Side - Summary */}
-          <div className="col-span-1">
-            <div className="bg-white rounded-lg p-6">
+          {/* Right Side - Summary - Full Width */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg p-6 w-full">
               <h3 className="text-[18px] font-bold mb-6">SUMMARY</h3>
 
               {/* Cart Items */}

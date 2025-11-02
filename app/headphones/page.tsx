@@ -9,7 +9,6 @@ export default function Headphone() {
         HEADPHONES
       </h1>
       
-      {/* First Section - XX99 Mark II */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
         <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center">
           <div
@@ -48,7 +47,6 @@ export default function Headphone() {
         </div>
       </section>
 
-      {/* Second Section - XX99 Mark I (Image on right for desktop, top for tablet) */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
         <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left order-2 lg:order-1">
           <h2 className="font-bold text-[40px] leading-11">

@@ -28,13 +28,13 @@ export default function AlsoLike() {
       <section className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {products.map((product) => (
           <div key={product.id} className="flex flex-col items-center gap-8">
-            <div className="bg-gray-light rounded-lg w-full h-80 flex items-center justify-center overflow-hidden">
+            <div className="bg-gray-light rounded-lg w-full lg:h-80 md:h-72 p-5 flex items-center justify-center overflow-hidden">
               <Image
                 src={product.image}
                 alt={product.name}
                 width={143}
                 height={193}
-                className="object-contain"
+                className="object-contain w-[73px] h-[98px] md:w-[143px] md:h-[193px]"
               />
             </div>
             <h3 className="font-bold text-2xl tracking-wider">

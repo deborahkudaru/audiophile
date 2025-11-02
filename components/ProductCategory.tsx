@@ -1,5 +1,6 @@
 import ArrowRightIcon from "@/public/icons/Arrow";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Category {
   name: string;
@@ -27,7 +28,7 @@ const categories: Category[] = [
 
 export default function ProductCategory() {
   return (
-    <section className="w-full py-40 lg:px-20 md:px-10 px-5">
+    <section className="w-full lg:py-40 md:py-20 py-10 lg:px-20 md:px-10 px-5">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {categories.map((category) => (
           <div
@@ -35,7 +36,7 @@ export default function ProductCategory() {
             className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 relative"
           >
             <div
-              className="absolute -top-20 w-40 h-40 flex items-center justify-center"
+              className="absolute lg:-top-20 -top-10 w-40 h-40 flex items-center justify-center"
               style={{
                 filter: "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
               }}
@@ -45,7 +46,7 @@ export default function ProductCategory() {
                 alt={category.name}
                 width={160}
                 height={160}
-                className="object-contain w-full h-full"
+                className="object-contain lg:w-[160] lg:h-[160] md:w-[120] md:h-[120] w-[100] h-[100]"
               />
             </div>
 
@@ -54,10 +55,10 @@ export default function ProductCategory() {
                 {category.name}
               </h2>
 
-              <button className="text-[13px] font-bold hover:text-gray-700 transition-colors flex items-center gap-4 mt-4">
+              <Link href={category.link} className="text-[13px] font-bold hover:text-gray-700 transition-colors flex items-center gap-4 mt-4">
                 SHOP
                 <ArrowRightIcon />
-              </button>
+              </Link>
             </div>
           </div>
         ))}

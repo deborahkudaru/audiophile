@@ -5,20 +5,20 @@ export default function Hero() {
     <div className="bg-dark text-white">
       {/* Mobile/Tablet View */}
       <div className="lg:hidden relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 flex items-center justify-center">
+        {/* Background Image - Cover whole background */}
+        <div className="absolute inset-0">
           <Image
             src="/images/hero-image.png"
             alt="Hero Image"
-            width={708.8}
-            height={886}
-            className="object-contain opacity-40"
+            fill
+            className="object-cover opacity-40"
+            priority
           />
         </div>
 
         {/* Content */}
         <div className="relative z-10 min-h-[600px] flex items-center justify-center px-6 py-20">
-          <div className="max-w-[398px] flex flex-col gap-6 text-center">
+          <div className="max-w-[398px] flex flex-col gap-6 text-center lg:mx-0 md:mx-0 mx-10">
             <p className="text-sm text-white/50 tracking-[10px] font-normal">
               NEW PRODUCT
             </p>
@@ -63,6 +63,7 @@ export default function Hero() {
             alt="Hero Image"
             width={708.8}
             height={886}
+            priority
           />
         </div>
       </div>
