@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import ProductCategory from "@/components/ProductCategory";
 import About from "@/components/About";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
-import { Product } from "@/types/product"; 
+import { Product } from "@/types/product";
 
 export default function Earphones() {
   const products = useQuery(api.products.getProductsByCategory, {
@@ -15,6 +15,18 @@ export default function Earphones() {
   const yx1Earphones = products?.find(
     (product) => product.slug === "yx1-wireless-earphones"
   );
+
+  // Loading state
+  if (products === undefined) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-black border-t-transparent rounded-full animate-spin"></div>
+          <p className="text-gray-600 font-medium">Loading earphones...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="">
