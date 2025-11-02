@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import ProductCategory from "@/components/ProductCategory";
@@ -6,6 +6,7 @@ import About from "@/components/About";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { Product } from "@/types/product";
+import Link from "next/link";
 
 export default function SPEAKERS() {
   const products = useQuery(api.products.getProductsByCategory, {
@@ -70,10 +71,14 @@ export default function SPEAKERS() {
             <p className="text-[15px] leading-[25px] text-gray-600">
               {zx9Speaker.description}
             </p>
+
             <div>
-              <button className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition">
+              <Link
+                href={`/products/${zx9Speaker.slug}`}
+                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              >
                 SEE PRODUCT
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -94,10 +99,14 @@ export default function SPEAKERS() {
             <p className="text-[15px] leading-[25px] text-gray-600">
               {zx7Speaker.description}
             </p>
+
             <div>
-              <button className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition">
+              <Link
+                href={`/products/${zx7Speaker.slug}`}
+                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              >
                 SEE PRODUCT
-              </button>
+              </Link>
             </div>
           </div>
 

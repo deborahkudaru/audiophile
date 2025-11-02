@@ -6,6 +6,7 @@ import About from "@/components/About";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { Product } from "@/types/product";
+import Link from "next/link";
 
 export default function Earphones() {
   const products = useQuery(api.products.getProductsByCategory, {
@@ -66,9 +67,12 @@ export default function Earphones() {
               {yx1Earphones.description}
             </p>
             <div>
-              <button className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition">
+              <Link
+                href={`/products/${yx1Earphones.slug}`}
+                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              >
                 SEE PRODUCT
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -96,9 +100,12 @@ export default function Earphones() {
                 <p className="text-gray-600 text-sm mb-6 line-clamp-2">
                   {product.description}
                 </p>
-                <button className="bg-primary text-white px-6 py-2 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition">
+                <Link
+                  href={`/products/${product.slug}`}
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                >
                   SEE PRODUCT
-                </button>
+                </Link>
               </div>
             ))}
         </div>

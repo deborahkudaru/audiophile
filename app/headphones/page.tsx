@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import ProductCategory from "@/components/ProductCategory";
@@ -6,6 +6,7 @@ import About from "@/components/About";
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { Product } from "@/types/product";
+import Link from "next/link";
 
 export default function Headphone() {
   const products = useQuery(api.products.getProductsByCategory, {
@@ -13,9 +14,13 @@ export default function Headphone() {
   }) as Product[] | undefined;
 
   // Get the specific headphones in the order they should appear
-  const xx99MarkII = products?.find(product => product.slug === "xx99-mark-ii-headphones");
-  const xx99MarkI = products?.find(product => product.slug === "xx99-mark-i-headphones");
-  const xx59 = products?.find(product => product.slug === "xx59-headphones");
+  const xx99MarkII = products?.find(
+    (product) => product.slug === "xx99-mark-ii-headphones"
+  );
+  const xx99MarkI = products?.find(
+    (product) => product.slug === "xx99-mark-i-headphones"
+  );
+  const xx59 = products?.find((product) => product.slug === "xx59-headphones");
 
   // Loading state
   if (products === undefined) {
@@ -34,7 +39,7 @@ export default function Headphone() {
       <h1 className="font-bold text-white bg-dark text-[40px] text-center p-20">
         HEADPHONES
       </h1>
-      
+
       {/* XX99 Mark II Headphones Section */}
       {xx99MarkII && (
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
@@ -68,9 +73,12 @@ export default function Headphone() {
               {xx99MarkII.description}
             </p>
             <div>
-              <button className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition">
+              <Link
+                href={`/products/${xx99MarkII.slug}`}
+                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              >
                 SEE PRODUCT
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -92,9 +100,12 @@ export default function Headphone() {
               {xx99MarkI.description}
             </p>
             <div>
-              <button className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition">
+              <Link
+                href={`/products/${xx99MarkI.slug}`}
+                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              >
                 SEE PRODUCT
-              </button>
+              </Link>
             </div>
           </div>
 
@@ -150,14 +161,17 @@ export default function Headphone() {
               {xx59.description}
             </p>
             <div>
-              <button className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition">
+              <Link
+                href={`/products/${xx59.slug}`}
+                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              >
                 SEE PRODUCT
-              </button>
+              </Link>
             </div>
           </div>
         </section>
       )}
-      
+
       <ProductCategory />
       <About />
     </div>
