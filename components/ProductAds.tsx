@@ -17,7 +17,7 @@ export default function ProductAds() {
           alt=""
           width={410.23}
           height={493}
-          className="relative lg:top-20 z-10 w-auto md:h-[237px] h-auto mx-auto lg:mx-0"
+          className="relative lg:top-20 z-10 w-auto lg:h-[493px] md:h-[237px] h-auto mx-auto lg:mx-0"
         />
         <div className="pb-16 relative z-10 w-[349px] m-auto lg:m-0 text-center lg:text-left">
           <h2 className="font-bold text-[56px]">ZX9 SPEAKER</h2>

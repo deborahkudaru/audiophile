@@ -3,12 +3,12 @@ import Image from "next/image";
 export default function Checkout() {
   return (
     <div className="bg-gray-100 min-h-screen py-16">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto md:px-10 px-5">
         <button className="text-gray-600 mb-20 hover:text-primary">
           Go back
         </button>
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
           {/* Left Side - Form */}
           <div className="col-span-2 bg-white rounded-lg p-8">
             <h2 className="text-[32px] font-bold mb-8">CHECKOUT</h2>

@@ -6,13 +6,13 @@ import ProductCategory from "@/components/ProductCategory";
 export default function ProductDetail() {
   return (
     <div>
-      <div className="px-20 pt-20">
+      <div className="lg:px-20 md:px-10 px-5 pt-20">
         <button className="text-[15px] text-gray-600 hover:text-primary font-medium">
           Go back
         </button>
       </div>
 
-      <section className="grid grid-cols-2 gap-16 px-20 py-12 items-center">
+      <section className="grid grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 py-12 items-center">
         <div className="bg-gray-light rounded-lg p-16 flex items-center justify-center">
           <div
             className="w-[349px] h-[386px] flex items-center justify-center"
@@ -60,7 +60,7 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      <section className="grid grid-cols-3 gap-16 px-20 py-20">
+      <section className="grid lg:grid-cols-3 grid-cols-1 gap-16 px-20 py-20">
         <div className="col-span-2">
           <h2 className="font-bold text-[32px] mb-8">FEATURES</h2>
           <p className="text-[15px] leading-[25px] text-gray-600 mb-6">
@@ -81,7 +81,7 @@ export default function ProductDetail() {
             aesthetic.
           </p>
         </div>
-        <div>
+        <div className="lg:flex lg:flex-col grid grid-cols-2 justify-between">
           <h2 className="font-bold text-[32px] mb-8">IN THE BOX</h2>
           <ul className="space-y-2">
             <li className="text-[15px] text-gray-600">
@@ -108,34 +108,34 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-6 px-20 pb-20">
+      <section className="grid grid-cols-2 lg:gap-6 lg:px-20 md:px-10 px-5 pb-20">
         <div className="space-y-8">
-          <div className="bg-gray-light rounded-lg h-72 overflow-hidden grayscale">
+          <div className="rounded-lg lg:h-72 overflow-hidden grayscale">
             <Image
               src="/images/image-two.png"
               alt="Product gallery"
               width={445}
               height={280}
-              className="object-cover w-full h-full scale-110"
+              className="object-cover w-full h-full scale-110 md:w-[277px] md:h-[174px]"
             />
           </div>
-          <div className="bg-gray-light rounded-lg h-72 overflow-hidden grayscale">
+          <div className="rounded-lg lg:h-72 overflow-hidden grayscale">
             <Image
               src="/images/image-three.png"
               alt="Product gallery"
               width={445}
               height={280}
-              className="object-cover w-full h-full scale-110"
+              className="object-cover w-full h-full scale-110 md:w-[277px] md:h-[174px]"
             />
           </div>
         </div>
-        <div className="bg-gray-light rounded-lg h-[608px] overflow-hidden grayscale">
+        <div className="rounded-lg lg:h-[608px] overflow-hidden grayscale">
           <Image
             src="/images/hero-image.png"
             alt="Product gallery"
             width={635}
             height={592}
-            className="object-cover w-full h-full scale-110"
+            className="object-cover w-full h-full scale-110 md:w-[395px] md:h-[368px]"
           />
         </div>
       </section>
