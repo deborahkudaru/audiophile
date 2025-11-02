@@ -1,4 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
+
+// Generate a URL-friendly slug from a product name
+const slugify = (name: string) =>
+  name
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "");
 
 export default function ProductAds() {
   return (
@@ -21,14 +31,20 @@ export default function ProductAds() {
           className="relative lg:top-20 z-10 w-auto lg:h-[493px] md:h-[237px] h-[200px] mx-auto lg:mx-0"
         />
         <div className="pb-16 relative z-10 w-full max-w-[349px] m-auto lg:m-0 text-center lg:text-left">
-          <h2 className="font-bold text-[36px] md:text-[56px] leading-tight">ZX9 SPEAKER</h2>
+          <h2 className="font-bold text-[36px] md:text-[56px] leading-tight">
+            ZX9 SPEAKER
+          </h2>
           <p className="text-[15px] mb-6 mt-4">
             Upgrade to premium speakers that are phenomenally built to deliver
             truly remarkable sound.
           </p>
-          <button className="bg-black text-white px-8 font-bold text-[13px] py-3 hover:bg-gray-800 transition">
+          <Link
+            href={`/products/${slugify("ZX9 SPEAKER")}`}
+            className="bg-black text-white px-8 font-bold text-[13px] py-3 hover:bg-gray-800 transition inline-block"
+            aria-label="See ZX9 Speaker product page"
+          >
             SEE PRODUCT
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -39,14 +55,20 @@ export default function ProductAds() {
           alt="ZX7 Speaker"
           fill
           className="object-cover"
-          style={{ objectPosition: "80% 70%" }}
+          style={{ objectPosition: "100% 50% " }}
         />
 
         <div className="relative z-10 px-6 md:px-16 py-8 md:py-16 h-full flex flex-col justify-center">
-          <h2 className="font-bold text-[24px] md:text-[28px] mb-4 md:mb-6">ZX7 SPEAKER</h2>
-          <button className="font-bold px-6 md:px-8 py-3 rounded-sm text-[13px] border border-black bg-transparent hover:bg-black hover:text-white transition w-fit">
+          <h2 className="font-bold text-[24px] md:text-[28px] mb-4 md:mb-6">
+            ZX7 SPEAKER
+          </h2>
+          <Link
+            href={`/products/${slugify("ZX7 SPEAKER")}`}
+            className="font-bold px-6 md:px-8 py-3 rounded-sm text-[13px] border border-black bg-transparent hover:bg-black hover:text-white transition w-fit inline-block"
+            aria-label="See ZX7 Speaker product page"
+          >
             SEE PRODUCT
-          </button>
+          </Link>
         </div>
       </section>
 
@@ -61,10 +83,16 @@ export default function ProductAds() {
           />
         </div>
         <div className="bg-gray-light rounded-lg flex flex-col justify-center px-6 md:px-16 py-12 md:py-0">
-          <h2 className="text-[24px] md:text-[28px] font-bold mb-4 md:mb-6">YX1 EARPHONES</h2>
-          <button className="border border-black px-6 md:px-8 py-3 w-fit font-bold text-[13px] hover:bg-black hover:text-white transition">
+          <h2 className="text-[24px] md:text-[28px] font-bold mb-4 md:mb-6">
+            YX1 EARPHONES
+          </h2>
+          <Link
+            href={`/products/${slugify("YX1 EARPHONES")}`}
+            className="border border-black px-6 md:px-8 py-3 w-fit font-bold text-[13px] hover:bg-black hover:text-white transition inline-block"
+            aria-label="See YX1 Earphones product page"
+          >
             SEE PRODUCT
-          </button>
+          </Link>
         </div>
       </section>
     </div>
