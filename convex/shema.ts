@@ -5,15 +5,26 @@ export default defineSchema({
   products: defineTable({
     name: v.string(),
     slug: v.string(),
-    price: v.number(),
-    description: v.string(),
-    image: v.string(),
-    gallery: v.array(v.string()),
     category: v.string(),
+    description: v.string(),
+    price: v.number(),
+    isNew: v.boolean(),
     features: v.string(),
-    stock: v.number(),
-  }),
-
+    inTheBox: v.array(
+      v.object({
+        quantity: v.number(),
+        item: v.string(),
+      })
+    ),
+    // Main product image - can use either storage ID or external URL
+    image: v.string(), // Keep your existing field for backward compatibility
+    // Optional: Convex storage IDs if you want to use Convex file storage
+    mainImageStorageId: v.optional(v.id("_storage")),
+    // Gallery images for product detail page
+    galleryImages: v.array(v.string()), // URLs or paths
+    galleryImageStorageIds: v.optional(v.array(v.id("_storage"))),
+  }).index("by_slug", ["slug"]),
+  
   orders: defineTable({
     customer: v.object({
       name: v.string(),
@@ -43,5 +54,6 @@ export default defineSchema({
     }),
     status: v.string(),
     createdAt: v.string(),
-  }),
+  }).index("by_status", ["status"])
+    .index("by_email", ["customer.email"]),
 });

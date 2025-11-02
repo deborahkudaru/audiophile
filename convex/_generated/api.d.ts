@@ -8,9 +8,8 @@
  * @module
  */
 
-import type * as CartContext from "../../context/CartContext.js";
-import type * as functions_orders from "../functions/orders.js";
-import type * as functions_products from "../functions/products.js";
+import type * as orders from "../orders.js";
+import type * as products from "../products.js";
 import type * as shema from "../shema.js";
 
 import type {
@@ -28,9 +27,8 @@ import type {
  * ```
  */
 declare const fullApi: ApiFromModules<{
-  CartContext: typeof CartContext;
-  "functions/orders": typeof functions_orders;
-  "functions/products": typeof functions_products;
+  orders: typeof orders;
+  products: typeof products;
   shema: typeof shema;
 }>;
 declare const fullApiWithMounts: typeof fullApi;

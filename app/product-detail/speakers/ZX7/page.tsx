@@ -34,7 +34,7 @@ export default function ProductDetail() {
             }}
           >
             <Image
-              src="/images/headphone-one.png"
+              src="/images/image-four.png"
               alt="Headphone"
               width={349.24}
               height={386}
