@@ -33,12 +33,12 @@ export default function ProductCategory() {
         {categories.map((category) => (
           <div
             key={category.name}
-            className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 relative"
+            className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 relative mt-24 md:mt-28 lg:mt-32"
           >
             <div
-              className="absolute lg:-top-20 -top-10 w-40 h-40 flex items-center justify-center"
+              className="absolute lg:-top-32 md:-top-24 -top-20 w-40 h-40 flex items-center justify-center"
               style={{
-                filter: "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
+                filter: "drop-shadow(0 35px 35px rgba(0, 0, 0, 0.45))",
               }}
             >
               <Image
@@ -46,11 +46,11 @@ export default function ProductCategory() {
                 alt={category.name}
                 width={160}
                 height={160}
-                className="object-contain lg:w-[160] lg:h-[160] md:w-[120] md:h-[120] w-[100] h-[100]"
+                className="object-contain lg:w-[180px] lg:h-[180px] md:w-[140px] md:h-[140px] w-[120px] h-[120px] transform hover:scale-105 transition-transform duration-300"
               />
             </div>
 
-            <div className="mt-20 flex flex-col items-center text-center">
+            <div className="mt-12 flex flex-col items-center text-center">
               <h2 className="text-dark text-lg font-bold tracking-widest">
                 {category.name}
               </h2>

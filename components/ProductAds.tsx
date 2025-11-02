@@ -15,13 +15,11 @@ export default function ProductAds() {
     <div className="lg:px-20 md:px-10 px-5">
       {/* ZX9 SPEAKER Section */}
       <section className="relative text-white bg-primary rounded-lg grid grid-cols-1 lg:grid-cols-2 items-center gap-8 px-8 md:px-20 py-16 lg:py-10 overflow-hidden mb-12">
-        {/* Decorative spiral circles */}
-        <div className="absolute -left-32 lg:left-0 top-1/2 -translate-y-1/2 w-[558px] h-[558px] rounded-full border border-white/10"></div>
-        <div className="absolute -left-28 lg:left-4 top-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full border border-white/15"></div>
-        <div className="absolute -left-24 lg:left-8 top-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full border border-white/20"></div>
-        <div className="absolute -left-20 lg:left-12 top-1/2 -translate-y-1/2 w-[320px] h-80 rounded-full border border-white/25"></div>
-        <div className="absolute -left-16 lg:left-16 top-1/2 -translate-y-1/2 w-60 h-60 rounded-full border border-white/30"></div>
-        <div className="absolute -left-12 lg:left-20 top-1/2 -translate-y-1/2 w-80 h-40 rounded-full border border-white/35"></div>
+        {/* Decorative circles */}
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border-2 border-white/20"></div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border-2 border-white/25"></div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border-2 border-white/30"></div>
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full border-2 border-white/35"></div>
 
         <Image
           src={"/images/speaker.png"}

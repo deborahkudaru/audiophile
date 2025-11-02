@@ -40,33 +40,35 @@ export default function Navbar() {
 
   return (
     <div className="bg-dark relative">
-      <nav className="flex justify-between text-white py-6 items-center px-5 md:px-10 lg:px-20 border-b border-gray-700">
-        <div className="flex items-center gap-8">
-          <button
-            className="lg:hidden"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      <nav className="flex justify-between text-white py-6 items-center px-5 md:px-10 lg:px-20 border-b border-white/10">
+        <button
+          className="lg:hidden z-10"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="hover:scale-110 transition-transform"
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M3 12H21M3 6H21M3 18H21"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+            <path
+              d="M3 12H21M3 6H21M3 18H21"
+              stroke="white"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
 
-          <div>
-            <Link href="/" className="font-bold text-xl tracking-wider">
-              audiophile
-            </Link>
-          </div>
+        <div className="absolute left-1/2 -translate-x-1/2 md:static md:transform-none md:ml-8">
+          <Link
+            href="/"
+            className="font-bold text-2xl md:text-xl tracking-wider hover:text-primary transition-colors block whitespace-nowrap"
+          >
+            audiophile
+          </Link>
         </div>
 
         <ul className="hidden lg:flex gap-8 font-bold text-[13px] tracking-widest">
@@ -126,11 +128,11 @@ export default function Navbar() {
                 stiffness: 200,
                 height: { duration: 0.4 },
               }}
-              className="fixed top-[73px] left-0 right-0 bg-white z-50 lg:hidden overflow-hidden"
+              className="fixed top-[73px] left-0 right-0 bg-white z-50 lg:hidden overflow-hidden shadow-2xl"
             >
               {/* Product Categories - Responsive Height */}
-              <div className="px-6 py-8 md:py-12">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-4 w-full max-w-6xl mx-auto">
+              <div className="px-6 py-10 md:py-12">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 w-full max-w-6xl mx-auto">
                   {categories.map((category, index) => (
                     <motion.div
                       key={category.name}
@@ -142,12 +144,13 @@ export default function Navbar() {
                         damping: 20,
                         stiffness: 100,
                       }}
-                      className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 md:py-6 relative min-h-40 md:min-h-[140px] w-full hover:scale-105 transition-transform duration-300"
+                      className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-10 md:py-6 relative min-h-48 md:min-h-[140px] w-full hover:scale-105 transition-transform duration-300 shadow-lg"
                     >
                       <div
                         className="absolute -top-8 md:-top-6 w-16 h-16 md:w-14 md:h-14 flex items-center justify-center"
                         style={{
-                          filter: "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
+                          filter:
+                            "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
                         }}
                       >
                         <Image

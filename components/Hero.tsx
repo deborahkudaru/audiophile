@@ -11,8 +11,9 @@ export default function Hero() {
             src="/images/hero-image.png"
             alt="Hero Image"
             fill
-            className="object-cover opacity-40"
+            className="object-cover opacity-40 scale-125 md:scale-110 object-center"
             priority
+            style={{ transform: 'translate(0%, 5%)' }}
           />
         </div>
 
