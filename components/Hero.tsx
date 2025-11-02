@@ -2,13 +2,13 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Hero() {
   return (
     <div className="bg-dark text-white">
       {/* Mobile/Tablet View */}
       <div className="lg:hidden relative overflow-hidden">
-        {/* Background Image with Animation */}
         <motion.div
           className="absolute inset-0"
           initial={{ opacity: 0, scale: 1.1 }}
@@ -69,16 +69,18 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <motion.button
-                className="bg-primary font-bold text-[13px] tracking-wider py-4 px-8 hover:bg-opacity-90 transition"
-                whileHover={{
-                  scale: 1.05,
-                  transition: { duration: 0.2 },
-                }}
-                whileTap={{ scale: 0.95 }}
-              >
-                SEE PRODUCT
-              </motion.button>
+              <Link href="/products/xx99-mark-ii-headphones">
+                <motion.button
+                  className="bg-primary font-bold text-[13px] tracking-wider py-4 px-8 hover:bg-opacity-90 transition"
+                  whileHover={{
+                    scale: 1.05,
+                    transition: { duration: 0.2 },
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  SEE PRODUCT
+                </motion.button>
+              </Link>
             </motion.div>
           </motion.div>
         </div>
@@ -129,17 +131,19 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <motion.button
-              className="bg-primary font-bold text-[13px] py-3 px-8 rounded-sm hover:bg-primary-light"
-              whileHover={{
-                scale: 1.05,
-                backgroundColor: "#FBAF85",
-                transition: { duration: 0.2 },
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              SEE PRODUCT
-            </motion.button>
+            <Link href="/products/xx99-mark-ii-headphones">
+              <motion.button
+                className="bg-primary font-bold text-[13px] py-3 px-8 rounded-sm hover:bg-primary-light"
+                whileHover={{
+                  scale: 1.05,
+                  backgroundColor: "#FBAF85",
+                  transition: { duration: 0.2 },
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                SEE PRODUCT
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
 

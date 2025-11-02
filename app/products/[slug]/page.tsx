@@ -11,8 +11,6 @@ import { useState, useEffect } from "react";
 import { Product } from "@/types/product";
 import toast from "react-hot-toast";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -25,15 +23,6 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
   const { addToCart } = useCart();
   const [quantity, setQuantity] = useState(1);
   const [slug, setSlug] = useState<string | null>(null);
-
-  // Refs for scroll animations
-  const productRef = useRef(null);
-  const featuresRef = useRef(null);
-  const galleryRef = useRef(null);
-
-  const productInView = useInView(productRef, { once: true });
-  const featuresInView = useInView(featuresRef, { once: true });
-  const galleryInView = useInView(galleryRef, { once: true });
 
   // Unwrap the params promise
   useEffect(() => {
@@ -146,20 +135,17 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
       {/* Product Section */}
       <motion.section
-        ref={productRef}
         className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:px-20 md:px-10 px-5 py-8 lg:py-12 items-center"
         initial={{ opacity: 0, y: 30 }}
-        animate={productInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
         <motion.div
           className="bg-gray-light rounded-lg lg:p-16 p-8 flex items-center justify-center"
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={
-            productInView
-              ? { opacity: 1, scale: 1 }
-              : { opacity: 0, scale: 0.9 }
-          }
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div
@@ -181,14 +167,16 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         <motion.div
           className="flex flex-col gap-4 lg:gap-6 text-left lg:text-left"
           initial={{ opacity: 0, x: 30 }}
-          animate={productInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           {product.isNew && (
             <motion.p
               className="text-primary text-sm font-bold tracking-[10px]"
               initial={{ opacity: 0 }}
-              animate={productInView ? { opacity: 1 } : { opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.6 }}
             >
               NEW PRODUCT
@@ -237,18 +225,17 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
       {/* Features & In The Box Section */}
       <motion.section
-        ref={featuresRef}
         className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-16 lg:px-20 md:px-10 px-5 py-12 lg:py-20"
         initial={{ opacity: 0, y: 30 }}
-        animate={featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.7 }}
       >
         <motion.div
           className="col-span-2"
           initial={{ opacity: 0, x: -30 }}
-          animate={
-            featuresInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
-          }
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <h2 className="font-bold text-2xl lg:text-[32px] mb-6 lg:mb-8">
@@ -261,9 +248,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         <motion.div
           className="lg:flex lg:flex-col grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-0"
           initial={{ opacity: 0, x: 30 }}
-          animate={
-            featuresInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
-          }
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <h2 className="font-bold text-2xl lg:text-[32px] mb-6 lg:mb-8">
@@ -275,9 +261,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 key={index}
                 className="text-[15px] text-gray-600"
                 initial={{ opacity: 0, x: 20 }}
-                animate={
-                  featuresInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
-                }
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
               >
                 <span className="text-primary font-bold mr-6">
@@ -292,10 +277,10 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
       {/* Gallery Section */}
       <motion.section
-        ref={galleryRef}
         className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:px-20 md:px-10 px-5 pb-12 lg:pb-20"
         initial={{ opacity: 0 }}
-        animate={galleryInView ? { opacity: 1 } : { opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6 }}
       >
         <div className="space-y-4 lg:space-y-8">
@@ -304,9 +289,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               key={index}
               className="rounded-lg h-[174px] lg:h-72 overflow-hidden grayscale"
               initial={{ opacity: 0, y: 30 }}
-              animate={
-                galleryInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
               whileHover={{
                 scale: 1.02,
@@ -326,13 +310,11 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         <motion.div
           className="rounded-lg h-[369px] lg:h-[608px] overflow-hidden grayscale"
           initial={{ opacity: 0, scale: 0.95 }}
-          animate={
-            galleryInView
-              ? { opacity: 1, scale: 1 }
-              : { opacity: 0, scale: 0.95 }
-          }
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.4 }}
           whileHover={{
+            filter: "grayscale(0%)",
             scale: 1.02,
             transition: { duration: 0.3 },
           }}
