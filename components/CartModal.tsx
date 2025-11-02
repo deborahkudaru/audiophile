@@ -48,8 +48,8 @@ export default function CartModal() {
               <Image
                 src={item.image}
                 alt={item.name}
-                width={64}
-                height={64}
+                width={40}
+                height={40}
                 className="object-contain"
               />
             </div>

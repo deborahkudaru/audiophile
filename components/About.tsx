@@ -2,8 +2,8 @@ import Image from "next/image";
 
 export default function About() {
   return (
-    <div className="grid grid-cols-2 gap-16 px-20 items-center py-32">
-      <div className="w-[445]">
+    <div className="grid lg:grid-cols-2 grid-cols-1 gap-16 lg:px-20 md:px-10 px-5 items-center lg:py-32 py-20">
+      <div className="lg:w-[445px] text-center lg:text-left m-auto lg:m-0 order-2 lg:order-1">
         <h1 className="font-bold text-[40px] mb-8">
           BRINGING YOU THE <span className="text-primary">BEST</span> AUDIO GEAR
         </h1>
@@ -16,12 +16,13 @@ export default function About() {
           best place to buy your portable audio equipment.
         </p>
       </div>
-      <div className="relative w-full h-[600px] rounded-lg overflow-hidden grayscale">
+
+      <div className="relative w-full lg:h-[600px] h-[300px] rounded-lg overflow-hidden grayscale order-1 lg:order-2">
         <Image
           src={"/images/image-two.png"}
           alt="About Image"
           fill
-          className="object-cover scale-150 objet-left"
+          className="object-cover scale-150 object-left"
         />
       </div>
     </div>

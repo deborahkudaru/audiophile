@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function ProductAds() {
   return (
-    <div className="px-20">
+    <div className="lg:px-20 md:px-10 px-5">
       <section className="relative text-white bg-primary rounded-lg grid grid-cols-1 lg:grid-cols-2 items-center gap-8 px-8 md:px-20 py-16 lg:py-10 overflow-hidden mb-12">
         {/* Decorative spiral circles */}
         <div className="absolute -left-32 lg:left-0 top-1/2 -translate-y-1/2 w-[558px] h-[558px] rounded-full border border-white/10"></div>
@@ -17,9 +17,9 @@ export default function ProductAds() {
           alt=""
           width={410.23}
           height={493}
-          className="relative top-20 z-10"
+          className="relative lg:top-20 z-10 w-auto md:h-[237px] h-auto mx-auto lg:mx-0"
         />
-        <div className="pb-16 relative z-10 w-[349px] m-auto">
+        <div className="pb-16 relative z-10 w-[349px] m-auto lg:m-0 text-center lg:text-left">
           <h2 className="font-bold text-[56px]">ZX9 SPEAKER</h2>
           <p className="text-[15px] mb-6">
             Upgrade to premium speakers that are phenomenally built to deliver
@@ -31,20 +31,20 @@ export default function ProductAds() {
         </div>
       </section>
 
-      <section className="relative rounded-lg overflow-hidden mb-12 h-80 grid grid-cols-2">
-        <div className="relative z-10 px-16 py-16 bg-gray-light">
+      <section className="relative rounded-lg overflow-hidden mb-12 h-80">
+        <Image
+          src={"/images/image-zero.png"}
+          alt=""
+          fill
+          className="object-cover"
+          style={{ objectPosition: "80% 70%" }}
+        />
+
+        <div className="relative z-10 px-8 md:px-16 py-16 h-full flex flex-col justify-center">
           <h2 className="font-bold text-[28px] mb-6">ZX7 SPEAKER</h2>
-          <button className="font-bold px-8 py-3 rounded-sm text-[13px] border border-black bg-transparent hover:bg-black hover:text-white transition">
+          <button className="font-bold px-8 py-3 rounded-sm text-[13px] border border-black bg-transparent hover:bg-black hover:text-white transition w-fit">
             SEE PRODUCT
           </button>
-        </div>
-                <div className="relative h-full">
-          <Image
-            src={"/images/image-zero.png"}
-            alt=""
-            fill
-            className="object-cover"
-          />
         </div>
       </section>
 

@@ -20,7 +20,7 @@ export default function AlsoLike() {
   ];
 
   return (
-    <div className="px-20 py-20">
+    <div className="lg:px-20 md:px-10 px-5 py-20">
       <h2 className="font-bold text-[32px] text-center mb-16">
         YOU MAY ALSO LIKE
       </h2>

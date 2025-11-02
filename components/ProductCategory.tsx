@@ -27,8 +27,8 @@ const categories: Category[] = [
 
 export default function ProductCategory() {
   return (
-    <section className="w-full py-40 px-6 md:px-12">
-      <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section className="w-full py-40 lg:px-20 md:px-10 px-5">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {categories.map((category) => (
           <div
             key={category.name}
