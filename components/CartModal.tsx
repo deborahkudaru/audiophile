@@ -1,52 +1,32 @@
+"use client";
 import Image from "next/image";
+import { useCart } from "@/context/CartContext";
 
 export default function CartModal() {
-  const cartItems = [
-    {
-      id: 1,
-      name: "XX99 MK II",
-      price: 2999,
-      quantity: 1,
-      image: "/images/headphone.png",
-    },
-    {
-      id: 2,
-      name: "XX59",
-      price: 899,
-      quantity: 2,
-      image: "/images/headphone-three.png",
-    },
-    {
-      id: 3,
-      name: "YX1",
-      price: 599,
-      quantity: 1,
-      image: "/images/earphone.png",
-    },
-  ];
-
-  const total = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  const { cart, removeItem, setQuantity, subtotal } = useCart();
 
   return (
     <section className="bg-white rounded-lg p-8 w-[377px] shadow-xl">
       <div className="flex justify-between items-center mb-8">
         <h3 className="font-bold text-lg tracking-wider">
-          CART <span>({cartItems.length})</span>
+          CART <span>({cart.length})</span>
         </h3>
-        <button className="text-[15px] text-gray-600 underline hover:text-primary">
+        <button
+          className="text-[15px] text-gray-600 underline hover:text-primary"
+          onClick={() => {
+            // implement Remove all? call clearCart if you want
+          }}
+        >
           Remove all
         </button>
       </div>
 
       <div className="space-y-6 mb-8">
-        {cartItems.map((item) => (
+        {cart.map((item) => (
           <div key={item.id} className="flex items-center gap-4">
             <div className="bg-gray-light rounded-lg w-16 h-16 flex items-center justify-center overflow-hidden shrink-0">
               <Image
-                src={item.image}
+                src={item.image || "/images/headphone.png"}
                 alt={item.name}
                 width={40}
                 height={40}
@@ -60,28 +40,45 @@ export default function CartModal() {
               </p>
             </div>
             <div className="bg-gray-light flex items-center gap-3 px-3">
-              <button className="text-gray-600 hover:text-primary py-2 text-sm">
+              <button
+                className="text-gray-600 hover:text-primary py-2 text-sm"
+                aria-label={`Decrease ${item.name}`}
+                onClick={() => setQuantity(item.id, item.quantity - 1)}
+              >
                 -
               </button>
               <p className="font-bold text-[13px] w-4 text-center">
                 {item.quantity}
               </p>
-              <button className="text-gray-600 hover:text-primary py-2 text-sm">
+              <button
+                className="text-gray-600 hover:text-primary py-2 text-sm"
+                aria-label={`Increase ${item.name}`}
+                onClick={() => setQuantity(item.id, item.quantity + 1)}
+              >
                 +
               </button>
             </div>
+            <button
+              className="ml-2 text-xs text-red-600"
+              onClick={() => removeItem(item.id)}
+            >
+              Remove
+            </button>
           </div>
         ))}
       </div>
 
       <div className="flex justify-between items-center mb-6">
         <p className="text-[15px] text-gray-600 font-medium">TOTAL</p>
-        <p className="font-bold text-lg">$ {total.toLocaleString()}</p>
+        <p className="font-bold text-lg">$ {subtotal.toLocaleString()}</p>
       </div>
 
-      <button className="bg-primary text-white w-full py-4 font-bold text-[13px] tracking-wider hover:bg-opacity-90 transition">
+      <a
+        href="/checkout"
+        className="block text-center bg-primary text-white w-full py-4 font-bold text-[13px] tracking-wider rounded hover:bg-opacity-90 transition"
+      >
         CHECKOUT
-      </button>
+      </a>
     </section>
   );
 }
