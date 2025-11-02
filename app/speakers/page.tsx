@@ -7,6 +7,9 @@ import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
 import { Product } from "@/types/product";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function SPEAKERS() {
   const products = useQuery(api.products.getProductsByCategory, {
@@ -20,6 +23,13 @@ export default function SPEAKERS() {
   const zx7Speaker = products?.find(
     (product) => product.slug === "zx7-speaker"
   );
+
+  // Refs for scroll animations
+  const zx9Ref = useRef(null);
+  const zx7Ref = useRef(null);
+  
+  const zx9InView = useInView(zx9Ref, { once: true, amount: 0.1 });
+  const zx7InView = useInView(zx7Ref, { once: true, amount: 0.1 });
 
   // Loading state
   if (products === undefined) {
@@ -35,14 +45,30 @@ export default function SPEAKERS() {
 
   return (
     <div className="">
-      <h1 className="font-bold text-white bg-dark text-[40px] text-center p-20">
+      <motion.h1 
+        className="font-bold text-white bg-dark text-[40px] text-center p-20"
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
         SPEAKERS
-      </h1>
+      </motion.h1>
 
       {/* ZX9 SPEAKER Section */}
       {zx9Speaker && (
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
-          <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center">
+        <motion.section 
+          ref={zx9Ref}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={zx9InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.div 
+            className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center"
+            initial={{ opacity: 0, x: -30 }}
+            animate={zx9InView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             <div
               className="w-[349px] h-[386px] flex items-center justify-center"
               style={{
@@ -57,60 +83,127 @@ export default function SPEAKERS() {
                 className="object-contain w-full h-full"
               />
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left">
+          <motion.div 
+            className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left"
+            initial={{ opacity: 0, x: 30 }}
+            animate={zx9InView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+          >
             {zx9Speaker.isNew && (
-              <p className="text-primary text-sm font-bold tracking-[10px]">
-                NEW PRODUCT
-              </p>
-            )}
-            <h2 className="font-bold text-[40px] leading-11">
-              {zx9Speaker.name.toUpperCase()}
-            </h2>
-            <p className="text-[15px] leading-[25px] text-gray-600">
-              {zx9Speaker.description}
-            </p>
-
-            <div>
-              <Link
-                href={`/products/${zx9Speaker.slug}`}
-                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              <motion.p 
+                className="text-primary text-sm font-bold tracking-[10px]"
+                initial={{ opacity: 0 }}
+                animate={zx9InView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
               >
-                SEE PRODUCT
-              </Link>
-            </div>
-          </div>
-        </section>
+                NEW PRODUCT
+              </motion.p>
+            )}
+            <motion.h2 
+              className="font-bold text-[40px] leading-11"
+              initial={{ opacity: 0, y: 20 }}
+              animate={zx9InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {zx9Speaker.name.toUpperCase()}
+            </motion.h2>
+            <motion.p 
+              className="text-[15px] leading-[25px] text-gray-600"
+              initial={{ opacity: 0, y: 20 }}
+              animate={zx9InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              {zx9Speaker.description}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={zx9InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href={`/products/${zx9Speaker.slug}`}
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                >
+                  SEE PRODUCT
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </motion.section>
       )}
 
       {/* ZX7 SPEAKER Section */}
       {zx7Speaker && (
-        <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
-          <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left order-2 lg:order-1">
+        <motion.section 
+          ref={zx7Ref}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20"
+          initial={{ opacity: 0, y: 50 }}
+          animate={zx7InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.div 
+            className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left order-2 lg:order-1"
+            initial={{ opacity: 0, x: -30 }}
+            animate={zx7InView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+          >
             {zx7Speaker.isNew && (
-              <p className="text-primary text-sm font-bold tracking-[10px]">
-                NEW PRODUCT
-              </p>
-            )}
-            <h2 className="font-bold text-[40px] leading-11">
-              {zx7Speaker.name.toUpperCase()}
-            </h2>
-            <p className="text-[15px] leading-[25px] text-gray-600">
-              {zx7Speaker.description}
-            </p>
-
-            <div>
-              <Link
-                href={`/products/${zx7Speaker.slug}`}
-                className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+              <motion.p 
+                className="text-primary text-sm font-bold tracking-[10px]"
+                initial={{ opacity: 0 }}
+                animate={zx7InView ? { opacity: 1 } : { opacity: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
               >
-                SEE PRODUCT
-              </Link>
-            </div>
-          </div>
+                NEW PRODUCT
+              </motion.p>
+            )}
+            <motion.h2 
+              className="font-bold text-[40px] leading-11"
+              initial={{ opacity: 0, y: 20 }}
+              animate={zx7InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              {zx7Speaker.name.toUpperCase()}
+            </motion.h2>
+            <motion.p 
+              className="text-[15px] leading-[25px] text-gray-600"
+              initial={{ opacity: 0, y: 20 }}
+              animate={zx7InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              {zx7Speaker.description}
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={zx7InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.9 }}
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <Link
+                  href={`/products/${zx7Speaker.slug}`}
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                >
+                  SEE PRODUCT
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
 
-          <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center order-1 lg:order-2">
+          <motion.div 
+            className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center order-1 lg:order-2"
+            initial={{ opacity: 0, x: 30 }}
+            animate={zx7InView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+          >
             <div
               className="w-[349px] h-[386px] flex items-center justify-center"
               style={{
@@ -125,8 +218,8 @@ export default function SPEAKERS() {
                 className="object-contain w-full h-full"
               />
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
       )}
 
       <ProductCategory />

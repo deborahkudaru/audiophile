@@ -10,6 +10,9 @@ import { useCart } from "@/context/CartContext";
 import { useState, useEffect } from "react";
 import { Product } from "@/types/product";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
+import { useRef } from "react";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -23,6 +26,15 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
   const [quantity, setQuantity] = useState(1);
   const [slug, setSlug] = useState<string | null>(null);
 
+  // Refs for scroll animations
+  const productRef = useRef(null);
+  const featuresRef = useRef(null);
+  const galleryRef = useRef(null);
+
+  const productInView = useInView(productRef, { once: true });
+  const featuresInView = useInView(featuresRef, { once: true });
+  const galleryInView = useInView(galleryRef, { once: true });
+
   // Unwrap the params promise
   useEffect(() => {
     async function unwrapParams() {
@@ -33,7 +45,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
   }, [params]);
 
   // Fetch product by slug only when slug is available
-  const product = useQuery(api.products.getProductBySlug, 
+  const product = useQuery(
+    api.products.getProductBySlug,
     slug ? { slug } : "skip"
   ) as Product | null | undefined;
 
@@ -50,7 +63,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         image: product.image,
         category: product.category,
       });
-      
+
       // Show custom toast for the specific product
       toast.success(
         <div className="flex items-center gap-3">
@@ -65,23 +78,25 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
           </div>
           <div>
             <p className="font-semibold">{product.name}</p>
-            <p className="text-sm text-gray-300">Added to cart! ({quantity}x)</p>
+            <p className="text-sm text-gray-300">
+              Added to cart! ({quantity}x)
+            </p>
           </div>
         </div>,
         {
           duration: 3000,
         }
       );
-      
+
       // Reset quantity after adding to cart
       setQuantity(1);
     } else {
-      toast.error('Failed to add product to cart');
+      toast.error("Failed to add product to cart");
     }
   };
 
-  const incrementQuantity = () => setQuantity(prev => prev + 1);
-  const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
+  const incrementQuantity = () => setQuantity((prev) => prev + 1);
+  const decrementQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
 
   // Loading state for params or product
   if (!slug || product === undefined) {
@@ -97,13 +112,13 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
   // Product not found
   if (product === null) {
-    toast.error('Product not found');
+    toast.error("Product not found");
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-          <button 
-            onClick={() => router.push('/')}
+          <button
+            onClick={() => router.push("/")}
             className="bg-primary text-white px-6 py-3 rounded font-medium"
           >
             Go Home
@@ -115,18 +130,38 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
   return (
     <div>
-      <div className="lg:px-20 md:px-10 px-5 pt-10 lg:pt-20">
+      <motion.div
+        className="lg:px-20 md:px-10 px-5 pt-10 lg:pt-20"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         <button
           onClick={handleGoBack}
           className="text-[15px] text-gray-600 hover:text-primary font-medium"
         >
           Go back
         </button>
-      </div>
+      </motion.div>
 
       {/* Product Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:px-20 md:px-10 px-5 py-8 lg:py-12 items-center">
-        <div className="bg-gray-light rounded-lg lg:p-16 p-8 flex items-center justify-center">
+      <motion.section
+        ref={productRef}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 lg:px-20 md:px-10 px-5 py-8 lg:py-12 items-center"
+        initial={{ opacity: 0, y: 30 }}
+        animate={productInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.7 }}
+      >
+        <motion.div
+          className="bg-gray-light rounded-lg lg:p-16 p-8 flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={
+            productInView
+              ? { opacity: 1, scale: 1 }
+              : { opacity: 0, scale: 0.9 }
+          }
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <div
             className="w-full max-w-[349px] h-[300px] lg:h-[386px] flex items-center justify-center"
             style={{
@@ -141,13 +176,23 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               className="object-contain md:h-[243px] md:w-[220px] h-[201px] w-[181px]"
             />
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex flex-col gap-4 lg:gap-6 text-left lg:text-left">
+        <motion.div
+          className="flex flex-col gap-4 lg:gap-6 text-left lg:text-left"
+          initial={{ opacity: 0, x: 30 }}
+          animate={productInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           {product.isNew && (
-            <p className="text-primary text-sm font-bold tracking-[10px]">
+            <motion.p
+              className="text-primary text-sm font-bold tracking-[10px]"
+              initial={{ opacity: 0 }}
+              animate={productInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+            >
               NEW PRODUCT
-            </p>
+            </motion.p>
           )}
           <h2 className="font-bold text-3xl lg:text-[40px] leading-tight lg:leading-11 max-w-full lg:max-w-[445.5px]">
             {product.name.toUpperCase()}
@@ -159,7 +204,11 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             $ {product.price.toLocaleString()}
           </p>
           <div className="flex gap-4 items-center lg:justify-start w-full">
-            <div className="bg-gray-light flex items-center justify-between gap-4 px-4 flex-1 max-w-[120px]">
+            <motion.div
+              className="bg-gray-light flex items-center justify-between gap-4 px-4 flex-1 max-w-[120px]"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.2 }}
+            >
               <button
                 onClick={decrementQuantity}
                 className="text-gray-600 hover:text-primary font-bold py-3 text-sm"
@@ -173,51 +222,96 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               >
                 +
               </button>
-            </div>
-            <button
+            </motion.div>
+            <motion.button
               onClick={handleAddToCart}
               className="bg-primary text-white px-6 lg:px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition flex-1"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               ADD TO CART
-            </button>
+            </motion.button>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Features & In The Box Section */}
-      <section className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-16 lg:px-20 md:px-10 px-5 py-12 lg:py-20">
-        <div className="col-span-2">
+      <motion.section
+        ref={featuresRef}
+        className="grid lg:grid-cols-3 grid-cols-1 gap-8 lg:gap-16 lg:px-20 md:px-10 px-5 py-12 lg:py-20"
+        initial={{ opacity: 0, y: 30 }}
+        animate={featuresInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+        transition={{ duration: 0.7 }}
+      >
+        <motion.div
+          className="col-span-2"
+          initial={{ opacity: 0, x: -30 }}
+          animate={
+            featuresInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
+          }
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           <h2 className="font-bold text-2xl lg:text-[32px] mb-6 lg:mb-8">
             FEATURES
           </h2>
           <div className="text-[15px] leading-[25px] text-gray-600 whitespace-pre-line">
             {product.features}
           </div>
-        </div>
-        <div className="lg:flex lg:flex-col grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-0">
+        </motion.div>
+        <motion.div
+          className="lg:flex lg:flex-col grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-0"
+          initial={{ opacity: 0, x: 30 }}
+          animate={
+            featuresInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
+          }
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
           <h2 className="font-bold text-2xl lg:text-[32px] mb-6 lg:mb-8">
             IN THE BOX
           </h2>
           <ul className="space-y-3">
             {product.inTheBox.map((item, index) => (
-              <li key={index} className="text-[15px] text-gray-600">
+              <motion.li
+                key={index}
+                className="text-[15px] text-gray-600"
+                initial={{ opacity: 0, x: 20 }}
+                animate={
+                  featuresInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
+                }
+                transition={{ duration: 0.5, delay: 0.6 + index * 0.1 }}
+              >
                 <span className="text-primary font-bold mr-6">
                   {item.quantity}x
                 </span>
                 {item.item}
-              </li>
+              </motion.li>
             ))}
           </ul>
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       {/* Gallery Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:px-20 md:px-10 px-5 pb-12 lg:pb-20">
+      <motion.section
+        ref={galleryRef}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:px-20 md:px-10 px-5 pb-12 lg:pb-20"
+        initial={{ opacity: 0 }}
+        animate={galleryInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="space-y-4 lg:space-y-8">
           {product.galleryImages.slice(0, 2).map((image, index) => (
-            <div
+            <motion.div
               key={index}
               className="rounded-lg h-[174px] lg:h-72 overflow-hidden grayscale"
+              initial={{ opacity: 0, y: 30 }}
+              animate={
+                galleryInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+              }
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.2 }}
+              whileHover={{
+                scale: 1.02,
+                transition: { duration: 0.3 },
+              }}
             >
               <Image
                 src={image}
@@ -226,10 +320,23 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
                 height={280}
                 className="object-cover w-full h-full scale-110"
               />
-            </div>
+            </motion.div>
           ))}
         </div>
-        <div className="rounded-lg h-[369px] lg:h-[608px] overflow-hidden grayscale">
+        <motion.div
+          className="rounded-lg h-[369px] lg:h-[608px] overflow-hidden grayscale"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={
+            galleryInView
+              ? { opacity: 1, scale: 1 }
+              : { opacity: 0, scale: 0.95 }
+          }
+          transition={{ duration: 0.7, delay: 0.4 }}
+          whileHover={{
+            scale: 1.02,
+            transition: { duration: 0.3 },
+          }}
+        >
           {product.galleryImages[2] && (
             <Image
               src={product.galleryImages[2]}
@@ -239,8 +346,8 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
               className="object-cover w-full h-full scale-110"
             />
           )}
-        </div>
-      </section>
+        </motion.div>
+      </motion.section>
 
       <AlsoLike />
       <ProductCategory />
