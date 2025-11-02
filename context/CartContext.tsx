@@ -1,5 +1,6 @@
 "use client";
 import { createContext, useContext, useState, ReactNode } from "react";
+import toast from "react-hot-toast";
 
 export interface CartItem {
   id: string;
@@ -29,23 +30,67 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart((prev) => {
       const exists = prev.find((i) => i.id === item.id);
       if (exists) {
+        toast.success(`Increased ${item.name} quantity!`, {
+          icon: '🛒',
+        });
         return prev.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
+      toast.success(`${item.name} added to cart!`, {
+        icon: '🛒',
+      });
       return [...prev, { ...item, quantity: 1 }];
     });
   };
 
   const setQuantity = (id: string, quantity: number) => {
-    setCart((prev) =>
-      prev.map((i) => (i.id === id ? { ...i, quantity: Math.max(1, quantity) } : i))
-    );
+    if (quantity < 1) {
+      removeItem(id);
+      return;
+    }
+    
+    setCart((prev) => {
+      const item = prev.find(i => i.id === id);
+      const newCart = prev.map((i) => 
+        i.id === id ? { ...i, quantity: Math.max(1, quantity) } : i
+      );
+      
+      // Show toast for quantity changes
+      if (item && quantity > item.quantity) {
+        toast.success(`Increased ${item.name} quantity to ${quantity}`, {
+          icon: '➕',
+        });
+      } else if (item && quantity < item.quantity) {
+        toast.success(`Decreased ${item.name} quantity to ${quantity}`, {
+          icon: '➖',
+        });
+      }
+      
+      return newCart;
+    });
   };
 
-  const removeItem = (id: string) => setCart((prev) => prev.filter((i) => i.id !== id));
+  const removeItem = (id: string) => {
+    setCart((prev) => {
+      const item = prev.find(i => i.id === id);
+      if (item) {
+        toast.error(`Removed ${item.name} from cart`, {
+          icon: '🗑️',
+        });
+      }
+      return prev.filter((i) => i.id !== id);
+    });
+  };
 
-  const clearCart = () => setCart([]);
+  const clearCart = () => {
+    if (cart.length > 0) {
+      toast.success('Cart cleared!', {
+        icon: '🛒',
+      });
+    }
+    setCart([]);
+  };
 
   const subtotal = cart.reduce((s, i) => s + i.price * i.quantity, 0);
 

@@ -1,5 +1,4 @@
 "use client";
-
 import AlsoLike from "@/components/AlsoLike";
 import About from "@/components/About";
 import Image from "next/image";
@@ -10,6 +9,7 @@ import { useQuery } from "convex/react";
 import { useCart } from "@/context/CartContext";
 import { useState, useEffect } from "react";
 import { Product } from "@/types/product";
+import toast from "react-hot-toast";
 
 interface ProductDetailPageProps {
   params: Promise<{
@@ -33,8 +33,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
   }, [params]);
 
   // Fetch product by slug only when slug is available
-  const product = useQuery(
-    api.products.getProductBySlug,
+  const product = useQuery(api.products.getProductBySlug, 
     slug ? { slug } : "skip"
   ) as Product | null | undefined;
 
@@ -51,13 +50,38 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         image: product.image,
         category: product.category,
       });
+      
+      // Show custom toast for the specific product
+      toast.success(
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 bg-gray-light rounded flex items-center justify-center">
+            <Image
+              src={product.image}
+              alt={product.name}
+              width={24}
+              height={24}
+              className="object-contain"
+            />
+          </div>
+          <div>
+            <p className="font-semibold">{product.name}</p>
+            <p className="text-sm text-gray-300">Added to cart! ({quantity}x)</p>
+          </div>
+        </div>,
+        {
+          duration: 3000,
+        }
+      );
+      
       // Reset quantity after adding to cart
       setQuantity(1);
+    } else {
+      toast.error('Failed to add product to cart');
     }
   };
 
-  const incrementQuantity = () => setQuantity((prev) => prev + 1);
-  const decrementQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
+  const incrementQuantity = () => setQuantity(prev => prev + 1);
+  const decrementQuantity = () => setQuantity(prev => Math.max(1, prev - 1));
 
   // Loading state for params or product
   if (!slug || product === undefined) {
@@ -73,12 +97,13 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
   // Product not found
   if (product === null) {
+    toast.error('Product not found');
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold mb-4">Product Not Found</h1>
-          <button
-            onClick={() => router.push("/")}
+          <button 
+            onClick={() => router.push('/')}
             className="bg-primary text-white px-6 py-3 rounded font-medium"
           >
             Go Home
