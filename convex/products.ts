@@ -27,7 +27,7 @@ export const seedAllProducts = mutation({
           { quantity: 1, item: "3.5mm 5m Audio Cable" },
           { quantity: 1, item: "Travel Bag" },
         ],
-        image: "/images/headphone.png",
+        image: "/images/headphone-one.png",
         galleryImages: ["/images/img13.png", "/images/img2.png", "/images/img6.png"],
       },
       {
