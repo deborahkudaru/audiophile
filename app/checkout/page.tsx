@@ -23,7 +23,7 @@ type FormFields = {
 
 export default function Checkout() {
   const router = useRouter();
-  const { cart, subtotal, clearCart } = useCart();
+  const { cart, subtotal } = useCart();
   const createOrder = useMutation(api.orders.createOrder);
 
   const [form, setForm] = useState<FormFields>({
@@ -44,6 +44,7 @@ export default function Checkout() {
   >({});
   const [loading, setLoading] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
+  const [currentOrderId, setCurrentOrderId] = useState<string | null>(null);
 
   const shipping = 50;
   const tax = Math.round(subtotal * 0.2);
@@ -88,7 +89,7 @@ export default function Checkout() {
     setLoading(true);
 
     try {
-      const orderId = await createOrder({
+      const newOrderId = await createOrder({
         customer: {
           name: form.name,
           email: form.email,
@@ -115,8 +116,8 @@ export default function Checkout() {
         },
       });
 
+      setCurrentOrderId(newOrderId);
       setShowThankYou(true);
-      clearCart();
     } catch (err) {
       console.error("Checkout error:", err);
     } finally {
@@ -138,8 +139,17 @@ export default function Checkout() {
           Go back
         </button>
 
-        {showThankYou ? (
-          <OrderConfirmation />
+        {showThankYou && currentOrderId ? (
+          <OrderConfirmation 
+            orderId={currentOrderId}
+            items={cart}
+            totals={{
+              subtotal,
+              shipping,
+              tax,
+              grandTotal
+            }}
+          />
         ) : (
           <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
             {/* Left Side - Form */}
