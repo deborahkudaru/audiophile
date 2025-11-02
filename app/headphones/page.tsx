@@ -8,8 +8,6 @@ import { useQuery } from "convex/react";
 import { Product } from "@/types/product";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
 
 export default function Headphone() {
   const products = useQuery(api.products.getProductsByCategory, {
@@ -24,15 +22,6 @@ export default function Headphone() {
     (product) => product.slug === "xx99-mark-i-headphones"
   );
   const xx59 = products?.find((product) => product.slug === "xx59-headphones");
-
-  // Refs for scroll animations
-  const markIIRef = useRef(null);
-  const markIRef = useRef(null);
-  const xx59Ref = useRef(null);
-
-  const markIIInView = useInView(markIIRef, { once: true });
-  const markIInView = useInView(markIRef, { once: true });
-  const xx59InView = useInView(xx59Ref, { once: true });
 
   // Loading state
   if (products === undefined) {
@@ -60,18 +49,17 @@ export default function Headphone() {
       {/* XX99 Mark II Headphones Section */}
       {xx99MarkII && (
         <motion.section
-          ref={markIIRef}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20"
           initial={{ opacity: 0, y: 50 }}
-          animate={markIIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.div
             className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center"
             initial={{ opacity: 0, x: -30 }}
-            animate={
-              markIIInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
-            }
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div
@@ -93,16 +81,16 @@ export default function Headphone() {
           <motion.div
             className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left"
             initial={{ opacity: 0, x: 30 }}
-            animate={
-              markIIInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }
-            }
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
             {xx99MarkII.isNew && (
               <motion.p
                 className="text-primary text-sm font-bold tracking-[10px]"
                 initial={{ opacity: 0 }}
-                animate={markIIInView ? { opacity: 1 } : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 NEW PRODUCT
@@ -111,9 +99,8 @@ export default function Headphone() {
             <motion.h2
               className="font-bold text-[40px] leading-11"
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                markIIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               {xx99MarkII.name.toUpperCase()}
@@ -121,18 +108,16 @@ export default function Headphone() {
             <motion.p
               className="text-[15px] leading-[25px] text-gray-600"
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                markIIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               {xx99MarkII.description}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                markIIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
               <motion.div
@@ -154,25 +139,25 @@ export default function Headphone() {
       {/* XX99 Mark I Headphones Section */}
       {xx99MarkI && (
         <motion.section
-          ref={markIRef}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20"
           initial={{ opacity: 0, y: 50 }}
-          animate={markIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.div
             className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left order-2 lg:order-1"
             initial={{ opacity: 0, x: -30 }}
-            animate={
-              markIInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }
-            }
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             {xx99MarkI.isNew && (
               <motion.p
                 className="text-primary text-sm font-bold tracking-[10px]"
                 initial={{ opacity: 0 }}
-                animate={markIInView ? { opacity: 1 } : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 NEW PRODUCT
@@ -181,9 +166,8 @@ export default function Headphone() {
             <motion.h2
               className="font-bold text-[40px] leading-11"
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                markIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               {xx99MarkI.name.toUpperCase()}
@@ -191,18 +175,16 @@ export default function Headphone() {
             <motion.p
               className="text-[15px] leading-[25px] text-gray-600"
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                markIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               {xx99MarkI.description}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                markIInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
               <motion.div
@@ -222,7 +204,8 @@ export default function Headphone() {
           <motion.div
             className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center order-1 lg:order-2"
             initial={{ opacity: 0, x: 30 }}
-            animate={markIInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
             <div
@@ -246,16 +229,17 @@ export default function Headphone() {
       {/* XX59 Headphones Section */}
       {xx59 && (
         <motion.section
-          ref={xx59Ref}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20"
           initial={{ opacity: 0, y: 50 }}
-          animate={xx59InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <motion.div
             className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center"
             initial={{ opacity: 0, x: -30 }}
-            animate={xx59InView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div
@@ -277,14 +261,16 @@ export default function Headphone() {
           <motion.div
             className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left"
             initial={{ opacity: 0, x: 30 }}
-            animate={xx59InView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.4 }}
           >
             {xx59.isNew && (
               <motion.p
                 className="text-primary text-sm font-bold tracking-[10px]"
                 initial={{ opacity: 0 }}
-                animate={xx59InView ? { opacity: 1 } : { opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
                 NEW PRODUCT
@@ -293,9 +279,8 @@ export default function Headphone() {
             <motion.h2
               className="font-bold text-[40px] leading-11"
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                xx59InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
               {xx59.name.toUpperCase()}
@@ -303,18 +288,16 @@ export default function Headphone() {
             <motion.p
               className="text-[15px] leading-[25px] text-gray-600"
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                xx59InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.7 }}
             >
               {xx59.description}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
-              animate={
-                xx59InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-              }
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.9 }}
             >
               <motion.div
