@@ -7,6 +7,7 @@ import CartModal from "./CartModal";
 import { motion, AnimatePresence } from "framer-motion";
 import ArrowRightIcon from "@/public/icons/Arrow";
 import Image from "next/image";
+import { useCart } from "../context/CartContext";
 
 interface Category {
   name: string;
@@ -33,6 +34,7 @@ const categories: Category[] = [
 ];
 
 export default function Navbar() {
+  const { cart } = useCart();
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -94,7 +96,12 @@ export default function Navbar() {
           onClick={() => setIsCartOpen(!isCartOpen)}
           className="hover:opacity-70 transition"
         >
-          <CartIcon />
+          <div className="relative">
+            <CartIcon />
+            {cart.length > 0 && (
+              <div className="absolute top-0 right-0 w-3 h-3 bg-orange-500 rounded-full" />
+            )}
+          </div>
         </button>
       </nav>
 
@@ -113,11 +120,11 @@ export default function Navbar() {
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
-              transition={{ 
-                type: "spring", 
-                damping: 25, 
+              transition={{
+                type: "spring",
+                damping: 25,
                 stiffness: 200,
-                height: { duration: 0.4 }
+                height: { duration: 0.4 },
               }}
               className="fixed top-[73px] left-0 right-0 bg-white z-50 lg:hidden overflow-hidden"
             >
@@ -129,11 +136,11 @@ export default function Navbar() {
                       key={category.name}
                       initial={{ y: 50, opacity: 0 }}
                       animate={{ y: 0, opacity: 1 }}
-                      transition={{ 
+                      transition={{
                         delay: 0.1 + index * 0.1,
                         type: "spring",
                         damping: 20,
-                        stiffness: 100
+                        stiffness: 100,
                       }}
                       className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 md:py-6 relative min-h-40 md:min-h-[140px] w-full hover:scale-105 transition-transform duration-300"
                     >
@@ -193,7 +200,7 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               className="absolute right-6 md:right-12 lg:right-20 top-24 z-50"
             >
-              <CartModal />
+              <CartModal onClose={() => setIsCartOpen(false)} />
             </motion.div>
           </>
         )}

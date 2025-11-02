@@ -372,11 +372,10 @@ export default function Checkout() {
                 disabled={loading || cart.length === 0}
                 className="w-full bg-primary text-white px-8 py-4 rounded font-bold text-[13px] tracking-wider hover:bg-opacity-90 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
-                {loading ? "Processing..." : "CONTINUE & PAY"}
+                {loading ? "Processing..." : "CONTINUE"}
               </button>
             </form>
 
-            {/* Right Side - Summary */}
             <aside className="lg:col-span-1">
               <div className="bg-white rounded-lg p-6 lg:p-8 w-full">
                 <h3 className="text-[18px] font-bold mb-6 tracking-wider">

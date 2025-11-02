@@ -4,7 +4,11 @@ import { useCart, CartItem } from "@/context/CartContext";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 
-export default function CartModal() {
+interface CartModalProps {
+  onClose: () => void;
+}
+
+export default function CartModal({ onClose }: CartModalProps) {
   const { cart, removeItem, setQuantity, subtotal, clearCart } = useCart();
   const router = useRouter();
 
@@ -13,6 +17,7 @@ export default function CartModal() {
       toast.error("Your cart is empty");
       return;
     }
+    onClose(); // Close the modal before navigation
     router.push("/checkout");
   };
 

@@ -30,16 +30,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setCart((prev) => {
       const exists = prev.find((i) => i.id === item.id);
       if (exists) {
-        toast.success(`Increased ${item.name} quantity!`, {
-          icon: '🛒',
-        });
         return prev.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
       }
-      toast.success(`${item.name} added to cart!`, {
-        icon: '🛒',
-      });
       return [...prev, { ...item, quantity: 1 }];
     });
   };
@@ -51,22 +45,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }
     
     setCart((prev) => {
-      const item = prev.find(i => i.id === id);
       const newCart = prev.map((i) => 
         i.id === id ? { ...i, quantity: Math.max(1, quantity) } : i
       );
-      
-      // Show toast for quantity changes
-      if (item && quantity > item.quantity) {
-        toast.success(`Increased ${item.name} quantity to ${quantity}`, {
-          icon: '➕',
-        });
-      } else if (item && quantity < item.quantity) {
-        toast.success(`Decreased ${item.name} quantity to ${quantity}`, {
-          icon: '➖',
-        });
-      }
-      
       return newCart;
     });
   };
@@ -87,6 +68,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     if (cart.length > 0) {
       toast.success('Cart cleared!', {
         icon: '🛒',
+        duration: 2000, // 2 seconds duration
       });
     }
     setCart([]);
