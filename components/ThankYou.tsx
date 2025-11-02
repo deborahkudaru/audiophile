@@ -1,3 +1,6 @@
+import Image from "next/image";
+import Link from "next/link";
+
 export default function OrderConfirmation() {
   const cartItems = [
     {
@@ -27,14 +30,12 @@ export default function OrderConfirmation() {
     (sum, item) => sum + item.price * item.quantity,
     0
   );
-  const shipping = 50;
-  const vat = subtotal * 0.2;
+  const shipping = 50;;
   const grandTotal = subtotal + shipping;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-lg w-full p-12">
-        {/* Success Icon */}
         <div className="w-16 h-16 bg-primary rounded-full flex items-center justify-center mb-6">
           <svg
             width="24"
@@ -69,10 +70,12 @@ export default function OrderConfirmation() {
           <div className="md:col-span-3 bg-gray-light p-6">
             <div className="flex items-center gap-4 mb-3">
               <div className="w-12 h-12 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
-                <img
+                <Image
                   src={cartItems[0].image}
                   alt={cartItems[0].name}
                   className="w-8 h-8 object-contain"
+                  width={32}
+                  height={32}
                 />
               </div>
               <div className="flex-1">
@@ -102,9 +105,9 @@ export default function OrderConfirmation() {
           </div>
         </div>
 
-        <button className="bg-primary text-white w-full py-4 font-bold text-[13px] tracking-wider hover:bg-opacity-90 transition">
+        <Link href="/" className="bg-primary text-white w-full py-4 font-bold text-[13px] tracking-wider hover:bg-opacity-90 transition">
           BACK TO HOME
-        </button>
+        </Link>
       </div>
     </div>
   );
