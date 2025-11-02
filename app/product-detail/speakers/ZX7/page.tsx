@@ -1,13 +1,25 @@
+"use client";
+
 import AlsoLike from "@/components/AlsoLike";
 import About from "@/components/About";
 import Image from "next/image";
 import ProductCategory from "@/components/ProductCategory";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetail() {
+  const router = useRouter();
+
+  const handleGoBack = () => {
+    router.back();
+  };
+
   return (
     <div>
       <div className="lg:px-20 md:px-10 px-5 pt-10 lg:pt-20">
-        <button className="text-[15px] text-gray-600 hover:text-primary font-medium">
+        <button
+          onClick={handleGoBack}
+          className="text-[15px] text-gray-600 hover:text-primary font-medium"
+        >
           Go back
         </button>
       </div>
@@ -32,18 +44,15 @@ export default function ProductDetail() {
         </div>
 
         <div className="flex flex-col gap-4 lg:gap-6 text-left lg:text-left">
-          <p className="text-primary text-sm font-bold tracking-[10px]">
-            NEW PRODUCT
-          </p>
           <h2 className="font-bold text-3xl lg:text-[40px] leading-tight lg:leading-11 max-w-full lg:max-w-[445.5px]">
             XX99 MARK II HEADPHONES
           </h2>
           <p className="text-[15px] leading-[25px] text-gray-600">
-            The new XX99 Mark II headphones is the pinnacle of pristine audio.
-            It redefines your premium headphone experience by reproducing the
-            balanced depth and precision of studio-quality sound.
+            Stream high quality sound wirelessly with minimal to no loss. The
+            ZX7 speaker uses high-end audiophile components that represents the
+            top of the line powered speakers for home or studio use.
           </p>
-          <p className="font-bold text-lg tracking-wider">$ 2,999</p>
+          <p className="font-bold text-lg tracking-wider">$ 3,500</p>
           <div className="flex gap-4 items-center lg:justify-start w-full">
             <div className="bg-gray-light flex items-center justify-between gap-4 px-4 flex-1 max-w-[120px]">
               <button className="text-gray-600 hover:text-primary font-bold py-3 text-sm">
@@ -68,21 +77,20 @@ export default function ProductDetail() {
             FEATURES
           </h2>
           <p className="text-[15px] leading-[25px] text-gray-600 mb-6">
-            Featuring a genuine leather head strap and premium earcups, these
-            headphones deliver superior comfort for those who like to enjoy
-            endless listening. It includes intuitive controls designed for any
-            situation. Whether youre taking a business call or just in your own
-            personal space, the auto on/off and pause features ensure that youll
-            never miss a beat.
+            Reap the advantages of a flat diaphragm tweeter cone. This provides
+            a fast response rate and excellent high frequencies that lower
+            tiered bookshelf speakers cannot provide. The woofers are made from
+            aluminum that produces a unique and clear sound. XLR inputs allow
+            you to connect to a mixer for more advanced usage.
           </p>
           <p className="text-[15px] leading-[25px] text-gray-600">
-            The advanced Active Noise Cancellation with built-in equalizer allow
-            you to experience your audio world on your terms. It lets you enjoy
-            your audio in peace, but quickly interact with your surroundings
-            when you need to. Combined with Bluetooth 5.0 compliant connectivity
-            and 17 hour battery life, the XX99 Mark II headphones gives you
-            superior sound, cutting-edge technology, and a modern design
-            aesthetic.
+            The ZX7 speaker is the perfect blend of stylish design and high
+            performance. It houses an encased MDF wooden enclosure which
+            minimises acoustic resonance. Dual connectivity allows pairing
+            through bluetooth or traditional optical and RCA input. Switch input
+            sources and control volume at your finger tips with the included
+            wireless remote. This versatile speaker is equipped to deliver an
+            authentic listening experience..
           </p>
         </div>
         <div className="lg:flex lg:flex-col grid grid-cols-1 lg:grid-cols-1 gap-6 lg:gap-0">
@@ -108,7 +116,7 @@ export default function ProductDetail() {
             </li>
             <li className="text-[15px] text-gray-600">
               <span className="text-primary font-bold mr-6">1x</span>
-              Travel Bag
+              7.5m Optical Cable
             </li>
           </ul>
         </div>
@@ -117,18 +125,18 @@ export default function ProductDetail() {
       {/* Gallery Section */}
       <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:px-20 md:px-10 px-5 pb-12 lg:pb-20">
         <div className="space-y-4 lg:space-y-8">
-          <div className="rounded-lg h-48 lg:h-72 overflow-hidden grayscale">
+          <div className="rounded-lg h-[174px] lg:h-72 overflow-hidden grayscale">
             <Image
-              src="/images/image-two.png"
+              src="/images/img3.png"
               alt="Product gallery"
               width={445}
               height={280}
               className="object-cover w-full h-full scale-110"
             />
           </div>
-          <div className="rounded-lg h-48 lg:h-72 overflow-hidden grayscale">
+          <div className="rounded-lg h-[174px] lg:h-72 overflow-hidden grayscale">
             <Image
-              src="/images/image-three.png"
+              src="/images/img11.png"
               alt="Product gallery"
               width={445}
               height={280}
@@ -136,9 +144,9 @@ export default function ProductDetail() {
             />
           </div>
         </div>
-        <div className="rounded-lg h-64 lg:h-[608px] overflow-hidden grayscale">
+        <div className="rounded-lg h-[369px] lg:h-[608px] overflow-hidden grayscale">
           <Image
-            src="/images/hero-image.png"
+            src="/images/image-zero.png"
             alt="Product gallery"
             width={635}
             height={592}

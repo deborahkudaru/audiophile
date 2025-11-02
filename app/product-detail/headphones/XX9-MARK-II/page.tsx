@@ -1,13 +1,26 @@
+"use client"
+
 import AlsoLike from "@/components/AlsoLike";
 import About from "@/components/About";
 import Image from "next/image";
 import ProductCategory from "@/components/ProductCategory";
+import { useRouter } from "next/navigation";
 
 export default function ProductDetail() {
+    const router = useRouter();
+
+  const handleGoBack = () => {
+    router.back();
+  };
+
+
   return (
     <div>
-      <div className="lg:px-20 md:px-10 px-5 pt-10 lg:pt-20">
-        <button className="text-[15px] text-gray-600 hover:text-primary font-medium">
+   <div className="lg:px-20 md:px-10 px-5 pt-10 lg:pt-20">
+        <button 
+          onClick={handleGoBack}
+          className="text-[15px] text-gray-600 hover:text-primary font-medium"
+        >
           Go back
         </button>
       </div>
@@ -114,38 +127,38 @@ export default function ProductDetail() {
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:px-20 md:px-10 px-5 pb-12 lg:pb-20">
-        <div className="space-y-4 lg:space-y-8">
-          <div className="rounded-lg h-48 lg:h-72 overflow-hidden grayscale">
-            <Image
-              src="/images/image-two.png"
-              alt="Product gallery"
-              width={445}
-              height={280}
-              className="object-cover w-full h-full scale-110"
-            />
-          </div>
-          <div className="rounded-lg h-48 lg:h-72 overflow-hidden grayscale">
-            <Image
-              src="/images/image-three.png"
-              alt="Product gallery"
-              width={445}
-              height={280}
-              className="object-cover w-full h-full scale-110"
-            />
-          </div>
-        </div>
-        <div className="rounded-lg h-64 lg:h-[608px] overflow-hidden grayscale">
-          <Image
-            src="/images/hero-image.png"
-            alt="Product gallery"
-            width={635}
-            height={592}
-            className="object-cover w-full h-full scale-110"
-          />
-        </div>
-      </section>
+     {/* Gallery Section */}
+<section className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:px-20 md:px-10 px-5 pb-12 lg:pb-20">
+  <div className="space-y-4 lg:space-y-8">
+    <div className="rounded-lg h-[174px] lg:h-72 overflow-hidden grayscale">
+      <Image
+        src="/images/image-two.png"
+        alt="Product gallery"
+        width={445}
+        height={280}
+        className="object-cover w-full h-full scale-110"
+      />
+    </div>
+    <div className="rounded-lg h-[174px] lg:h-72 overflow-hidden grayscale">
+      <Image
+        src="/images/image-three.png"
+        alt="Product gallery"
+        width={445}
+        height={280}
+        className="object-cover w-full h-full scale-110"
+      />
+    </div>
+  </div>
+  <div className="rounded-lg h-[369px] lg:h-[608px] overflow-hidden grayscale">
+    <Image
+      src="/images/hero-image.png"
+      alt="Product gallery"
+      width={635}
+      height={592}
+      className="object-cover w-full h-full scale-110"
+    />
+  </div>
+</section>
 
       <AlsoLike />
       <ProductCategory />
