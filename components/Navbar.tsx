@@ -135,7 +135,7 @@ export default function Navbar() {
                         damping: 20,
                         stiffness: 100
                       }}
-                      className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 md:py-6 relative min-h-[160px] md:min-h-[140px] w-full hover:scale-105 transition-transform duration-300"
+                      className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-8 md:py-6 relative min-h-40 md:min-h-[140px] w-full hover:scale-105 transition-transform duration-300"
                     >
                       <div
                         className="absolute -top-8 md:-top-6 w-16 h-16 md:w-14 md:h-14 flex items-center justify-center"
