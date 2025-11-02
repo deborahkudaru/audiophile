@@ -8,8 +8,10 @@ export default function SPEAKERS() {
       <h1 className="font-bold text-white bg-dark text-[40px] text-center p-20">
         SPEAKERS
       </h1>
-      <section className="grid grid-cols-2 gap-16 px-20 items-center py-20">
-        <div className="bg-gray-light rounded-lg p-10 flex items-center justify-center">
+      
+      {/* First Section - ZX9 SPEAKER */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
+        <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center">
           <div
             className="w-[349px] h-[386px] flex items-center justify-center"
             style={{
@@ -26,7 +28,7 @@ export default function SPEAKERS() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 w-[445px]">
+        <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left">
           <p className="text-primary text-sm font-bold tracking-[10px]">
             NEW PRODUCT
           </p>
@@ -45,8 +47,9 @@ export default function SPEAKERS() {
         </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-16 px-20 items-center mb-32">
-        <div className="flex flex-col gap-6">
+      {/* Second Section - ZX7 SPEAKER (Image on right for desktop, top for tablet) */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
+        <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left order-2 lg:order-1">
           <h2 className="font-bold text-[40px] leading-11">ZX7 SPEAKER</h2>
           <p className="text-[15px] leading-[25px] text-gray-600">
             Stream high quality sound wirelessly with minimal loss. The ZX7
@@ -60,7 +63,8 @@ export default function SPEAKERS() {
             </button>
           </div>
         </div>
-        <div className="bg-gray-light rounded-lg p-10 flex items-center justify-center">
+
+        <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center order-1 lg:order-2">
           <div
             className="w-[349px] h-[386px] flex items-center justify-center"
             style={{

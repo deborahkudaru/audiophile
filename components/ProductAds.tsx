@@ -25,7 +25,7 @@ export default function ProductAds() {
             Upgrade to premium speakers that are phenomenally built to deliver
             truly remarkable sound.
           </p>
-          <button className="bg-black text-white px-8 font-bold text-[13px] py-3">
+          <button className="bg-black text-white px-8 font-bold text-[13px] py-3 lg:mt-0 mt-10">
             SEE PRODUCT
           </button>
         </div>

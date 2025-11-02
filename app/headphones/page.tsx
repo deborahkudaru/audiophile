@@ -8,8 +8,10 @@ export default function Headphone() {
       <h1 className="font-bold text-white bg-dark text-[40px] text-center p-20">
         HEADPHONES
       </h1>
-      <section className="grid grid-cols-2 gap-16 px-20 items-center py-20">
-        <div className="bg-gray-light rounded-lg p-10 flex items-center justify-center">
+      
+      {/* First Section - XX99 Mark II */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
+        <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center">
           <div
             className="w-[349px] h-[386px] flex items-center justify-center"
             style={{
@@ -21,12 +23,12 @@ export default function Headphone() {
               alt="Headphone image"
               width={349.24}
               height={386}
-              className="object-contain w-full h-full"
+              className="object-contain w-full h-full md:h-[243px] md:w-[220px]"
             />
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 w-[445px]">
+        <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left">
           <p className="text-primary text-sm font-bold tracking-[10px]">
             NEW PRODUCT
           </p>
@@ -45,8 +47,10 @@ export default function Headphone() {
           </div>
         </div>
       </section>
-      <section className="grid grid-cols-2 gap-16 px-20 items-center mb-32">
-        <div className="flex flex-col gap-6">
+
+      {/* Second Section - XX99 Mark I (Image on right for desktop, top for tablet) */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
+        <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left order-2 lg:order-1">
           <h2 className="font-bold text-[40px] leading-11">
             XX99 Mark I Headphones
           </h2>
@@ -61,7 +65,8 @@ export default function Headphone() {
             </button>
           </div>
         </div>
-        <div className="bg-gray-light rounded-lg p-10 flex items-center justify-center">
+
+        <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center order-1 lg:order-2">
           <div
             className="w-[349px] h-[386px] flex items-center justify-center"
             style={{
@@ -73,14 +78,15 @@ export default function Headphone() {
               alt="Headphone image"
               width={349.24}
               height={386}
-              className="object-contain w-full h-full"
+              className="object-contain w-full h-full md:h-[243px] md:w-[220px]"
             />
           </div>
         </div>
       </section>
 
-      <section className="grid grid-cols-2 gap-16 px-20 items-center mb-32">
-        <div className="bg-gray-light rounded-lg p-10 flex items-center justify-center">
+      {/* Third Section - XX59 Headphones */}
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
+        <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center">
           <div
             className="w-[349px] h-[386px] flex items-center justify-center"
             style={{
@@ -92,11 +98,12 @@ export default function Headphone() {
               alt="Headphone image"
               width={349.24}
               height={386}
-              className="object-contain w-full h-full"
+              className="object-contain w-full h-full md:h-[243px] md:w-[220px]"
             />
           </div>
         </div>
-        <div className="flex flex-col gap-6">
+
+        <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left">
           <h2 className="font-bold text-[40px] leading-11">
             XX59 Headphones
           </h2>
@@ -112,6 +119,7 @@ export default function Headphone() {
           </div>
         </div>
       </section>
+      
       <ProductCategory />
       <About />
     </div>

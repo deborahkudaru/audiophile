@@ -8,8 +8,9 @@ export default function Earphones() {
       <h1 className="font-bold text-white bg-dark text-[40px] text-center p-20">
         EARPHONES
       </h1>
-      <section className="grid grid-cols-2 gap-16 px-20 items-center py-20 mb-32">
-        <div className="bg-gray-light rounded-lg p-10 flex items-center justify-center">
+      
+      <section className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:px-20 md:px-10 px-5 items-center py-20">
+        <div className="bg-gray-light rounded-lg lg:p-10 lg:px-0 py-5 px-7 flex items-center justify-center">
           <div
             className="w-[349px] h-[386px] flex items-center justify-center"
             style={{
@@ -26,7 +27,7 @@ export default function Earphones() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 w-[445px]">
+        <div className="flex flex-col gap-6 lg:w-[445px] lg:mx-0 mx-auto text-center lg:text-left">
           <p className="text-primary text-sm font-bold tracking-[10px]">
             NEW PRODUCT
           </p>
@@ -46,6 +47,7 @@ export default function Earphones() {
           </div>
         </div>
       </section>
+      
       <ProductCategory />
       <About />
     </div>
