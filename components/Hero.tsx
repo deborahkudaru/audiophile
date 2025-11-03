@@ -133,7 +133,7 @@ export default function Hero() {
           >
             <Link href="/products/xx99-mark-ii-headphones">
               <motion.button
-                className="bg-primary font-bold text-[13px] py-3 px-8 rounded-sm hover:bg-primary-light"
+                className="bg-primary font-bold text-[13px] py-3 px-8 hover:bg-primary-light"
                 whileHover={{
                   scale: 1.05,
                   backgroundColor: "#FBAF85",
