@@ -88,7 +88,7 @@ export default function CartModal({ onClose }: CartModalProps) {
                   removeItem(item.id);
                   toast.dismiss(t.id);
                 }}
-                className="px-6 py-2.5 bg-primary text-white rounded font-bold text-xs tracking-wider hover:bg-opacity-90 transition"
+                className="px-6 py-2.5 bg-primary text-white rounded font-bold text-xs tracking-wider hover:bg-primary-light transition"
               >
                 REMOVE
               </button>
@@ -178,15 +178,6 @@ export default function CartModal({ onClose }: CartModalProps) {
                   +
                 </button>
               </div>
-              <button
-                className="ml-2 text-xs text-red-600 opacity-0 group-hover:opacity-100 transition-opacity hover:text-red-700"
-                onClick={() => {
-                  removeItem(item.id);
-                }}
-                aria-label={`Remove ${item.name}`}
-              >
-                ✕
-              </button>
             </div>
           ))
         )}
@@ -201,7 +192,7 @@ export default function CartModal({ onClose }: CartModalProps) {
 
           <button
             onClick={handleCheckout}
-            className="w-full bg-primary text-white py-4 font-bold text-[13px] tracking-wider rounded hover:bg-opacity-90 transition transform hover:scale-[1.02] active:scale-[0.98]"
+            className="w-full bg-primary text-white py-4 font-bold text-[13px] tracking-wider rounded hover:bg-primary-light transition transform hover:scale-[1.02] active:scale-[0.98]"
           >
             CHECKOUT
           </button>

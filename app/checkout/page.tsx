@@ -75,55 +75,69 @@ export default function Checkout() {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    if (!validate()) {
-      return;
-    }
+  if (!validate()) return;
+  if (cart.length === 0) return;
 
-    if (cart.length === 0) {
-      return;
-    }
+  setLoading(true);
 
-    setLoading(true);
+  try {
+    const newOrderId = await createOrder({
+      customer: {
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+      },
+      shipping: {
+        address: form.address,
+        city: form.city,
+        country: form.country,
+        zip: form.zip,
+      },
+      items: cart.map((item) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+        image: item.image || "",
+      })),
+      totals: {
+        subtotal,
+        shipping,
+        tax,
+        grandTotal,
+      },
+    });
 
-    try {
-      const newOrderId = await createOrder({
+    await fetch("/api/send-email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        orderId: newOrderId,
         customer: {
           name: form.name,
           email: form.email,
-          phone: form.phone,
         },
-        shipping: {
-          address: form.address,
-          city: form.city,
-          country: form.country,
-          zip: form.zip,
-        },
-        items: cart.map((item) => ({
-          id: item.id,
-          name: item.name,
-          price: item.price,
-          quantity: item.quantity,
-          image: item.image || "",
-        })),
+        items: cart,
         totals: {
           subtotal,
           shipping,
           tax,
           grandTotal,
         },
-      });
+      }),
+    });
+    setCurrentOrderId(newOrderId);
+    setShowThankYou(true);
+  } catch (err) {
+    console.error("Checkout error:", err);
+  } finally {
+    setLoading(false);
+  }
+};
 
-      setCurrentOrderId(newOrderId);
-      setShowThankYou(true);
-    } catch (err) {
-      console.error("Checkout error:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
 
   const handleGoBack = () => {
     router.back();

@@ -73,7 +73,7 @@ export default function Headphone() {
                 alt={xx99MarkII.name}
                 width={349.24}
                 height={386}
-                className="object-contain w-full h-full md:h-[243px] md:w-[220px]"
+                className="object-contain md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
               />
             </div>
           </motion.div>
@@ -126,7 +126,7 @@ export default function Headphone() {
               >
                 <Link
                   href={`/products/${xx99MarkII.slug}`}
-                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition inline-block"
                 >
                   SEE PRODUCT
                 </Link>
@@ -193,7 +193,7 @@ export default function Headphone() {
               >
                 <Link
                   href={`/products/${xx99MarkI.slug}`}
-                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition inline-block"
                 >
                   SEE PRODUCT
                 </Link>
@@ -219,7 +219,7 @@ export default function Headphone() {
                 alt={xx99MarkI.name}
                 width={349.24}
                 height={386}
-                className="object-contain w-full h-full md:h-[243px] md:w-[220px]"
+                className="object-contain md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
               />
             </div>
           </motion.div>
@@ -253,7 +253,7 @@ export default function Headphone() {
                 alt={xx59.name}
                 width={349.24}
                 height={386}
-                className="object-contain w-full h-full md:h-[243px] md:w-[220px]"
+                className="object-contain md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
               />
             </div>
           </motion.div>
@@ -306,7 +306,7 @@ export default function Headphone() {
               >
                 <Link
                   href={`/products/${xx59.slug}`}
-                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition inline-block"
                 >
                   SEE PRODUCT
                 </Link>

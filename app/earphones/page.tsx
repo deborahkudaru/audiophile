@@ -72,7 +72,7 @@ export default function Earphones() {
                 alt={yx1Earphones.name}
                 width={421}
                 height={381}
-                className="object-contain w-full h-full"
+                className="object-contain h-[243px] w-[220px] md:h-[243px] md:w-[220px]"
               />
             </div>
           </motion.div>
@@ -125,7 +125,7 @@ export default function Earphones() {
               >
                 <Link
                   href={`/products/${yx1Earphones.slug}`}
-                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition inline-block"
                 >
                   SEE PRODUCT
                 </Link>
@@ -183,7 +183,7 @@ export default function Earphones() {
               >
                 <Link
                   href={`/products/${product.slug}`}
-                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition inline-block"
                 >
                   SEE PRODUCT
                 </Link>

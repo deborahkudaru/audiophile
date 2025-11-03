@@ -62,7 +62,7 @@ export default function SPEAKERS() {
             transition={{ duration: 0.7, delay: 0.2 }}
           >
             <div
-              className="w-[349px] h-[386px] flex items-center justify-center"
+              className="w-[327px] h-[327px] flex items-center justify-center"
               style={{
                 filter: "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
               }}
@@ -72,7 +72,7 @@ export default function SPEAKERS() {
                 alt={zx9Speaker.name}
                 width={291.24}
                 height={350}
-                className="object-contain w-full h-full"
+                className="object-contain md:h-[202px] md:w-[140.62px] h-[202px] w-[140.62px]"
               />
             </div>
           </motion.div>
@@ -125,7 +125,7 @@ export default function SPEAKERS() {
               >
                 <Link
                   href={`/products/${zx9Speaker.slug}`}
-                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition inline-block"
                 >
                   SEE PRODUCT
                 </Link>
@@ -192,7 +192,7 @@ export default function SPEAKERS() {
               >
                 <Link
                   href={`/products/${zx7Speaker.slug}`}
-                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition inline-block"
+                  className="bg-primary text-white px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition inline-block"
                 >
                   SEE PRODUCT
                 </Link>
@@ -208,7 +208,7 @@ export default function SPEAKERS() {
             transition={{ duration: 0.7, delay: 0.4 }}
           >
             <div
-              className="w-[349px] h-[386px] flex items-center justify-center"
+              className="w-[327px] h-[327px] flex items-center justify-center"
               style={{
                 filter: "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
               }}
@@ -218,7 +218,7 @@ export default function SPEAKERS() {
                 alt={zx7Speaker.name}
                 width={291.24}
                 height={350}
-                className="object-contain w-full h-full"
+                className="object-contain md:h-[202px] md:w-[140.62px] h-[202px] w-[140.62px]"
               />
             </div>
           </motion.div>

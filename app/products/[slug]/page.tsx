@@ -213,7 +213,7 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
             </motion.div>
             <motion.button
               onClick={handleAddToCart}
-              className="bg-primary text-white px-6 lg:px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-opacity-90 transition flex-1"
+              className="bg-primary text-white px-6 lg:px-8 py-3 font-bold text-[13px] tracking-wide hover:bg-primary-light transition flex-1"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

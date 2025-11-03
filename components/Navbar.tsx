@@ -131,7 +131,7 @@ export default function Navbar() {
               className="fixed top-[73px] left-0 right-0 bg-white z-50 lg:hidden overflow-hidden shadow-2xl"
             >
               {/* Product Categories - Responsive Height */}
-              <div className="px-6 py-10 md:py-12">
+              <div className="px-6 py-14 md:py-12">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 w-full max-w-6xl mx-auto">
                   {categories.map((category, index) => (
                     <motion.div
@@ -147,7 +147,7 @@ export default function Navbar() {
                       className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-10 md:py-6 relative min-h-48 md:min-h-[140px] w-full hover:scale-105 transition-transform duration-300 shadow-lg"
                     >
                       <div
-                        className="absolute -top-8 md:-top-6 w-16 h-16 md:w-14 md:h-14 flex items-center justify-center"
+                        className="absolute -top-8 md:-top-6 flex items-center justify-center"
                         style={{
                           filter:
                             "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
@@ -156,8 +156,8 @@ export default function Navbar() {
                         <Image
                           src={category.image}
                           alt={category.name}
-                          width={64}
-                          height={64}
+                          width={100}
+                          height={100}
                           className="object-contain"
                         />
                       </div>

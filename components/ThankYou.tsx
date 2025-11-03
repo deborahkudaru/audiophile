@@ -48,7 +48,7 @@ export default function OrderConfirmation({
         </div>
 
         {/* Title */}
-        <h2 className="font-bold text-[32px] leading-9 mb-4">
+        <h2 className="font-bold lg:text-[32px] text-2xl leading-9 mb-4">
           THANK YOU
           <br />
           FOR YOUR ORDER
@@ -56,9 +56,7 @@ export default function OrderConfirmation({
         <p className="text-[15px] text-gray-600 mb-2">
           You will receive an email confirmation shortly.
         </p>
-        <p className="text-[13px] text-gray-500 mb-6">
-          Order ID: <span className="font-medium">{orderId}</span>
-        </p>
+        <p className="text-transparent">{orderId}</p>
 
         {/* Order Summary */}
         <div className="grid grid-cols-1 md:grid-cols-5 rounded-lg overflow-hidden mb-6">
@@ -112,7 +110,7 @@ export default function OrderConfirmation({
         <Link
           href="/"
           onClick={clearCart}
-          className="bg-primary text-white w-full py-4 text-center block font-bold text-[13px] tracking-wider hover:bg-opacity-90 transition"
+          className="bg-primary text-white w-full py-4 text-center block font-bold text-[13px] tracking-wider hover:bg-primary-light transition"
         >
           BACK TO HOME
         </Link>

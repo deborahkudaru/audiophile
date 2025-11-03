@@ -90,7 +90,7 @@ export default function ProductCategory() {
 
               <Link
                 href={category.link}
-                className="text-[13px] font-bold hover:text-gray-700 transition-colors flex items-center gap-4 mt-4"
+                className="text-[13px] font-bold hover:text-primary-light transition-colors flex items-center gap-4 mt-4"
               >
                 <motion.span
                   whileHover={{ x: 5 }}
