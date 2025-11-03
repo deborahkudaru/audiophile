@@ -52,7 +52,7 @@ export default function CartModal({ onClose }: CartModalProps) {
           </div>
         ),
         {
-          duration: 1000,
+          duration: 10000,
           style: {
             background: "white",
             boxShadow:
