@@ -72,7 +72,7 @@ export default function SPEAKERS() {
                 alt={zx9Speaker.name}
                 width={291.24}
                 height={350}
-                className="object-contain md:h-[202px] md:w-[140.62px] h-[202px] w-[140.62px]"
+                className="object-contain lg:w-[291.24px] lg:h-[350px] md:h-[202px] md:w-[140.62px] h-[202px] w-[140.62px]"
               />
             </div>
           </motion.div>
@@ -218,7 +218,7 @@ export default function SPEAKERS() {
                 alt={zx7Speaker.name}
                 width={291.24}
                 height={350}
-                className="object-contain md:h-[202px] md:w-[140.62px] h-[202px] w-[140.62px]"
+                className="object-contain lg:w-[291px] lg:h-[350px] md:h-[202px] md:w-[140.62px] h-[202px] w-[140.62px]"
               />
             </div>
           </motion.div>

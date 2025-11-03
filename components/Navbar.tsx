@@ -62,7 +62,7 @@ export default function Navbar() {
           </svg>
         </button>
 
-        <div className="absolute left-1/2 -translate-x-1/2 md:static md:transform-none md:ml-8">
+        <div className="absolute lg:static md:left-28 left-1/2 -translate-x-1/2 md:transform-none md:ml-8">
           <Link
             href="/"
             className="font-bold text-2xl md:text-xl tracking-wider hover:text-primary transition-colors block whitespace-nowrap"

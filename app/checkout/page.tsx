@@ -75,69 +75,68 @@ export default function Checkout() {
     return Object.keys(e).length === 0;
   };
 
- const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  if (!validate()) return;
-  if (cart.length === 0) return;
+    if (!validate()) return;
+    if (cart.length === 0) return;
 
-  setLoading(true);
+    setLoading(true);
 
-  try {
-    const newOrderId = await createOrder({
-      customer: {
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-      },
-      shipping: {
-        address: form.address,
-        city: form.city,
-        country: form.country,
-        zip: form.zip,
-      },
-      items: cart.map((item) => ({
-        id: item.id,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-        image: item.image || "",
-      })),
-      totals: {
-        subtotal,
-        shipping,
-        tax,
-        grandTotal,
-      },
-    });
-
-    await fetch("/api/send-email", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        orderId: newOrderId,
+    try {
+      const newOrderId = await createOrder({
         customer: {
           name: form.name,
           email: form.email,
+          phone: form.phone,
         },
-        items: cart,
+        shipping: {
+          address: form.address,
+          city: form.city,
+          country: form.country,
+          zip: form.zip,
+        },
+        items: cart.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image || "",
+        })),
         totals: {
           subtotal,
           shipping,
           tax,
           grandTotal,
         },
-      }),
-    });
-    setCurrentOrderId(newOrderId);
-    setShowThankYou(true);
-  } catch (err) {
-    console.error("Checkout error:", err);
-  } finally {
-    setLoading(false);
-  }
-};
+      });
 
+      await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: newOrderId,
+          customer: {
+            name: form.name,
+            email: form.email,
+          },
+          items: cart,
+          totals: {
+            subtotal,
+            shipping,
+            tax,
+            grandTotal,
+          },
+        }),
+      });
+      setCurrentOrderId(newOrderId);
+      setShowThankYou(true);
+    } catch (err) {
+      console.error("Checkout error:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleGoBack = () => {
     router.back();
@@ -154,14 +153,14 @@ export default function Checkout() {
         </button>
 
         {showThankYou && currentOrderId ? (
-          <OrderConfirmation 
+          <OrderConfirmation
             orderId={currentOrderId}
             items={cart}
             totals={{
               subtotal,
               shipping,
               tax,
-              grandTotal
+              grandTotal,
             }}
           />
         ) : (
@@ -181,10 +180,15 @@ export default function Checkout() {
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[12px] font-bold mb-2 block">
+                    <label
+                      htmlFor="name"
+                      className="text-[12px] font-bold mb-2 block"
+                    >
                       Name
                     </label>
                     <input
+                      id="name"
+                      name="name"
                       value={form.name}
                       onChange={(e) =>
                         setForm({ ...form, name: e.target.value })
@@ -204,10 +208,15 @@ export default function Checkout() {
                     )}
                   </div>
                   <div>
-                    <label className="text-[12px] font-bold mb-2 block">
+                    <label
+                      htmlFor="email"
+                      className="text-[12px] font-bold mb-2 block"
+                    >
                       Email Address
                     </label>
                     <input
+                      id="email"
+                      name="email"
                       value={form.email}
                       onChange={(e) =>
                         setForm({ ...form, email: e.target.value })
@@ -230,10 +239,15 @@ export default function Checkout() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <label className="text-[12px] font-bold mb-2 block">
+                  <label
+                    htmlFor="phone"
+                    className="text-[12px] font-bold mb-2 block"
+                  >
                     Phone Number
                   </label>
                   <input
+                    id="phone"
+                    name="phone"
                     value={form.phone}
                     onChange={(e) =>
                       setForm({ ...form, phone: e.target.value })
@@ -260,10 +274,15 @@ export default function Checkout() {
                   SHIPPING INFO
                 </h3>
                 <div className="mb-4">
-                  <label className="text-[12px] font-bold mb-2 block">
+                  <label
+                    htmlFor="address"
+                    className="text-[12px] font-bold mb-2 block"
+                  >
                     Address
                   </label>
                   <input
+                    id="address"
+                    name="address"
                     value={form.address}
                     onChange={(e) =>
                       setForm({ ...form, address: e.target.value })
@@ -286,10 +305,15 @@ export default function Checkout() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="text-[12px] font-bold mb-2 block">
+                    <label
+                      htmlFor="zip"
+                      className="text-[12px] font-bold mb-2 block"
+                    >
                       ZIP Code
                     </label>
                     <input
+                      id="zip"
+                      name="zip"
                       value={form.zip}
                       onChange={(e) =>
                         setForm({ ...form, zip: e.target.value })
@@ -309,10 +333,15 @@ export default function Checkout() {
                     )}
                   </div>
                   <div>
-                    <label className="text-[12px] font-bold mb-2 block">
+                    <label
+                      htmlFor="city"
+                      className="text-[12px] font-bold mb-2 block"
+                    >
                       City
                     </label>
                     <input
+                      id="city"
+                      name="city"
                       value={form.city}
                       onChange={(e) =>
                         setForm({ ...form, city: e.target.value })
@@ -333,10 +362,15 @@ export default function Checkout() {
                   </div>
                 </div>
                 <div className="mt-4">
-                  <label className="text-[12px] font-bold mb-2 block">
+                  <label
+                    htmlFor="country"
+                    className="text-[12px] font-bold mb-2 block"
+                  >
                     Country
                   </label>
                   <input
+                    id="country"
+                    name="country"
                     value={form.country}
                     onChange={(e) =>
                       setForm({ ...form, country: e.target.value })
@@ -369,10 +403,14 @@ export default function Checkout() {
                     Payment Method
                   </label>
                   <div className="space-y-3">
-                    <label className="flex items-center border rounded-lg px-4 py-3 cursor-pointer hover:border-primary transition">
+                    <label
+                      htmlFor="payment-e-money"
+                      className="flex items-center border rounded-lg px-4 py-3 cursor-pointer hover:border-primary transition"
+                    >
                       <input
-                        type="radio"
+                        id="payment-e-money"
                         name="payment"
+                        type="radio"
                         className="mr-3 accent-primary"
                         checked={form.payment === "e-money"}
                         onChange={() =>
@@ -381,10 +419,14 @@ export default function Checkout() {
                       />
                       <span className="text-[14px] font-bold">e-Money</span>
                     </label>
-                    <label className="flex items-center border rounded-lg px-4 py-3 cursor-pointer hover:border-primary transition">
+                    <label
+                      htmlFor="payment-cod"
+                      className="flex items-center border rounded-lg px-4 py-3 cursor-pointer hover:border-primary transition"
+                    >
                       <input
-                        type="radio"
+                        id="payment-cod"
                         name="payment"
+                        type="radio"
                         className="mr-3 accent-primary"
                         checked={form.payment === "cod"}
                         onChange={() => setForm({ ...form, payment: "cod" })}
@@ -399,10 +441,15 @@ export default function Checkout() {
                 {form.payment === "e-money" && (
                   <div className="mt-6 grid md:grid-cols-2 grid-cols-1 gap-4">
                     <div>
-                      <label className="text-[12px] font-bold mb-2 block">
+                      <label
+                        htmlFor="eMoneyNumber"
+                        className="text-[12px] font-bold mb-2 block"
+                      >
                         e-Money Number
                       </label>
                       <input
+                        id="eMoneyNumber"
+                        name="eMoneyNumber"
                         type="text"
                         placeholder="238521993"
                         value={form.eMoneyNumber}
@@ -423,10 +470,15 @@ export default function Checkout() {
                       )}
                     </div>
                     <div>
-                      <label className="text-[12px] font-bold mb-2 block">
+                      <label
+                        htmlFor="eMoneyPin"
+                        className="text-[12px] font-bold mb-2 block"
+                      >
                         e-Money PIN
                       </label>
                       <input
+                        id="eMoneyPin"
+                        name="eMoneyPin"
                         type="password"
                         placeholder="6891"
                         value={form.eMoneyPin}

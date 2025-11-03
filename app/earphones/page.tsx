@@ -72,7 +72,7 @@ export default function Earphones() {
                 alt={yx1Earphones.name}
                 width={421}
                 height={381}
-                className="object-contain h-[243px] w-[220px] md:h-[243px] md:w-[220px]"
+                className="object-contain  h-[243px] w-[220px] md:h-[421px] md:w-[381px]"
               />
             </div>
           </motion.div>

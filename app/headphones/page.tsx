@@ -73,7 +73,7 @@ export default function Headphone() {
                 alt={xx99MarkII.name}
                 width={349.24}
                 height={386}
-                className="object-contain md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
+                className="object-contain lg:w-[394.24px] lg:h-[386px] md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
               />
             </div>
           </motion.div>
@@ -219,7 +219,7 @@ export default function Headphone() {
                 alt={xx99MarkI.name}
                 width={349.24}
                 height={386}
-                className="object-contain md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
+                className="object-contain lg:w-[349.24px] lg:h-[386px] md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
               />
             </div>
           </motion.div>
@@ -253,7 +253,7 @@ export default function Headphone() {
                 alt={xx59.name}
                 width={349.24}
                 height={386}
-                className="object-contain md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
+                className="object-contain lg:h-[386px] lg:w-[349.24px] md:h-[243px] md:w-[220px] h-[243px] w-[220px]"
               />
             </div>
           </motion.div>
