@@ -155,8 +155,8 @@ export default function Hero() {
           <Image
             src="/images/hero-image.png"
             alt="Hero Image"
-            width={708.8}
-            height={886}
+            width={540}
+            height={588}
             priority
           />
         </motion.div>

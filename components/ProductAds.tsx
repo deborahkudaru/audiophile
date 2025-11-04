@@ -95,7 +95,6 @@ export default function ProductAds() {
           alt="ZX7 Speaker"
           fill
           className="object-cover"
-          style={{ objectPosition: "100% 50% " }}
         />
 
         <motion.div
