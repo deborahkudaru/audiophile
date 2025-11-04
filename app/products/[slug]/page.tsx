@@ -33,7 +33,6 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
     unwrapParams();
   }, [params]);
 
-  // Fetch product by slug only when slug is available
   const product = useQuery(
     api.products.getProductBySlug,
     slug ? { slug } : "skip"
@@ -45,15 +44,16 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
 
   const handleAddToCart = () => {
     if (product) {
-      addToCart({
-        id: product._id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        category: product.category,
-      });
-
-      // Show custom toast for the specific product
+      addToCart(
+        {
+          id: product._id,
+          name: product.name,
+          price: product.price,
+          image: product.image,
+          category: product.category,
+        },
+        quantity
+      );
       toast.success(
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gray-light rounded flex items-center justify-center">
@@ -77,13 +77,11 @@ export default function ProductDetailPage({ params }: ProductDetailPageProps) {
         }
       );
 
-      // Reset quantity after adding to cart
       setQuantity(1);
     } else {
       toast.error("Failed to add product to cart");
     }
   };
-
   const incrementQuantity = () => setQuantity((prev) => prev + 1);
   const decrementQuantity = () => setQuantity((prev) => Math.max(1, prev - 1));
 

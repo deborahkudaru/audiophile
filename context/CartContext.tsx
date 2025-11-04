@@ -14,7 +14,7 @@ export interface CartItem {
 
 interface CartContextType {
   cart: CartItem[];
-  addToCart: (item: Omit<CartItem, "quantity">) => void;
+  addToCart: (item: Omit<CartItem, "quantity">, quantity?: number) => void; // Updated to accept quantity
   setQuantity: (id: string, quantity: number) => void;
   removeItem: (id: string) => void;
   clearCart: () => void;
@@ -26,15 +26,20 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  const addToCart = (item: Omit<CartItem, "quantity">) => {
+  const addToCart = (
+    item: Omit<CartItem, "quantity">,
+    quantity: number = 1
+  ) => {
+    // Accept quantity parameter
     setCart((prev) => {
       const exists = prev.find((i) => i.id === item.id);
       if (exists) {
-        return prev.map((i) =>
-          i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
+        return prev.map(
+          (i) =>
+            i.id === item.id ? { ...i, quantity: i.quantity + quantity } : i // Use the quantity parameter
         );
       }
-      return [...prev, { ...item, quantity: 1 }];
+      return [...prev, { ...item, quantity }]; // Use the quantity parameter
     });
   };
 
@@ -43,9 +48,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
       removeItem(id);
       return;
     }
-    
+
     setCart((prev) => {
-      const newCart = prev.map((i) => 
+      const newCart = prev.map((i) =>
         i.id === id ? { ...i, quantity: Math.max(1, quantity) } : i
       );
       return newCart;
@@ -54,10 +59,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const removeItem = (id: string) => {
     setCart((prev) => {
-      const item = prev.find(i => i.id === id);
+      const item = prev.find((i) => i.id === id);
       if (item) {
         toast.error(`Removed ${item.name} from cart`, {
-          icon: '🗑️',
+          icon: "🗑️",
         });
       }
       return prev.filter((i) => i.id !== id);
@@ -66,8 +71,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   const clearCart = () => {
     if (cart.length > 0) {
-      toast.success('Cart cleared!', {
-        icon: '🛒',
+      toast.success("Cart cleared!", {
+        icon: "🛒",
         duration: 2000, // 2 seconds duration
       });
     }
