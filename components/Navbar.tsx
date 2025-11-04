@@ -144,10 +144,10 @@ export default function Navbar() {
                         damping: 20,
                         stiffness: 100,
                       }}
-                      className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-10 md:py-6 relative min-h-48 md:min-h-[140px] w-full hover:scale-105 transition-transform duration-300 shadow-lg"
+                      className="bg-gray-light rounded-lg flex flex-col items-center justify-center py-12 md:py-8 relative min-h-52 md:min-h-40 w-full hover:scale-105 transition-transform duration-300 shadow-lg"
                     >
                       <div
-                        className="absolute -top-8 md:-top-6 flex items-center justify-center"
+                        className="absolute -top-12 md:-top-10 flex items-center justify-center"
                         style={{
                           filter:
                             "drop-shadow(0 25px 25px rgba(0, 0, 0, 0.35))",
@@ -156,20 +156,24 @@ export default function Navbar() {
                         <Image
                           src={category.image}
                           alt={category.name}
-                          width={100}
-                          height={100}
-                          className="object-contain"
+                          width={120}
+                          height={120}
+                          className="object-contain w-30 h-30 md:w-24 md:h-24"
+                          style={{
+                            width: "120px",
+                            height: "120px",
+                          }}
                         />
                       </div>
 
-                      <div className="mt-12 md:mt-10 flex flex-col items-center text-center">
-                        <h2 className="text-dark text-base md:text-sm font-bold tracking-widest">
+                      <div className="mt-16 md:mt-14 flex flex-col items-center text-center">
+                        <h2 className="text-dark text-lg md:text-base font-bold tracking-widest">
                           {category.name}
                         </h2>
 
                         <Link
                           href={category.link}
-                          className="text-[12px] md:text-[11px] font-bold hover:text-gray-700 transition-colors flex items-center gap-2 mt-3 md:mt-2"
+                          className="text-[13px] md:text-[12px] font-bold hover:text-gray-700 transition-colors flex items-center gap-2 mt-4 md:mt-3"
                           onClick={() => setIsMobileMenuOpen(false)}
                         >
                           SHOP
