@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
-import { Resend } from "resend";
+import nodemailer from "nodemailer";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
-// Define types for request body
 interface OrderItem {
   id: string;
   name: string;
@@ -30,9 +27,18 @@ interface EmailRequestBody {
 export async function POST(req: Request) {
   try {
     const body: EmailRequestBody = await req.json();
-
     const { customer, items, totals, orderId } = body;
 
+    // ✅ Configure the transporter (use your Gmail or custom SMTP)
+    const transporter = nodemailer.createTransport({
+      service: "gmail", // or "hotmail", "yahoo", etc.
+      auth: {
+        user: process.env.EMAIL_USER, // your email
+        pass: process.env.EMAIL_PASS, // your app password (not your normal password!)
+      },
+    });
+
+    // ✅ Create the HTML content
     const emailHtml = `
       <div style="font-family:sans-serif;line-height:1.6;color:#333;">
         <h2>Hey ${customer.name}, thanks for your order! 🎉</h2>
@@ -40,11 +46,11 @@ export async function POST(req: Request) {
         <h3>Items:</h3>
         <ul>
           ${items
-        .map(
-          (item) =>
-            `<li>${item.name} — ${item.quantity} × $${item.price.toFixed(2)}</li>`
-        )
-        .join("")}
+            .map(
+              (item) =>
+                `<li>${item.name} — ${item.quantity} × $${item.price.toFixed(2)}</li>`
+            )
+            .join("")}
         </ul>
         <p><strong>Grand Total:</strong> $${totals.grandTotal.toFixed(2)}</p>
         <p>We’ll ship your order to:</p>
@@ -53,8 +59,9 @@ export async function POST(req: Request) {
       </div>
     `;
 
-    await resend.emails.send({
-      from: "Audiophile <onboarding@resend.dev>",
+    // ✅ Send the email
+    await transporter.sendMail({
+      from: `"Audiophile" <${process.env.EMAIL_USER}>`,
       to: customer.email,
       subject: "Order Confirmation",
       html: emailHtml,
@@ -63,6 +70,6 @@ export async function POST(req: Request) {
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Email send error:", error);
-    return NextResponse.json({ success: false, error }, { status: 500 });
+    return NextResponse.json({ success: false, error: (error as Error).message }, { status: 500 });
   }
-} 
+}
