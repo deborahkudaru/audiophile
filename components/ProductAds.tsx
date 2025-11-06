@@ -153,7 +153,7 @@ export default function ProductAds() {
           </h2>
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link
-              href={`/products/${slugify("YX1 EARPHONES")}`}
+              href={`/products/${slugify("YX1 WIRELESS EARPHONES")}`}
               className="border border-black px-6 md:px-8 py-3 w-fit font-bold text-[13px] hover:bg-black hover:text-white transition inline-block"
               aria-label="See YX1 Earphones product page"
             >
