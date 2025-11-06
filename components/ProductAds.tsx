@@ -89,13 +89,15 @@ export default function ProductAds() {
         animate={zx7InView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        <Image
-          src={"/images/image-zero.png"}
-          alt="ZX7 Speaker"
-          fill
-          className="object-cover"
-          style={{ transform: "scaleX(-1)" }}
-        />
+        {/* flipped container */}
+        <div className="absolute inset-0 transform scale-x-[-1]">
+          <Image
+            src="/images/image-zero.png"
+            alt="ZX7 Speaker"
+            fill
+            className="object-cover"
+          />
+        </div>
 
         <motion.div
           className="relative z-10 px-6 md:px-16 py-8 md:py-16 h-full flex flex-col justify-center"

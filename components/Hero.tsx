@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import { motion } from "framer-motion";
@@ -86,10 +86,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Desktop View */}
-      <div className="hidden lg:flex justify-between min-h-screen items-center px-20">
+      {/* Desktop View (Updated) */}
+      <div className="hidden lg:flex justify-between items-center px-20 relative overflow-hidden min-h-[750px]">
+        {/* Left Content */}
         <motion.div
-          className="max-w-[398px] flex flex-col gap-6"
+          className="max-w-[420px] flex flex-col gap-6"
           initial="hidden"
           animate="visible"
           variants={{
@@ -110,7 +111,7 @@ export default function Hero() {
             NEW PRODUCT
           </motion.p>
           <motion.h1
-            className="font-bold text-[56px] leading-[58px]"
+            className="font-bold text-[60px] leading-16"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -118,7 +119,7 @@ export default function Hero() {
             XX99 MARK II HEADPHONES
           </motion.h1>
           <motion.p
-            className="font-semibold text-[15px] leading-[25px]"
+            className="font-semibold text-[16px] leading-7 text-white/80"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
@@ -147,7 +148,9 @@ export default function Hero() {
           </motion.div>
         </motion.div>
 
+        {/* Right Image (Cropped + Taller Section) */}
         <motion.div
+          className="relative w-[560px] h-[680px] overflow-hidden flex items-center justify-center"
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -158,6 +161,7 @@ export default function Hero() {
             width={540}
             height={588}
             priority
+            className="object-cover object-center scale-[1.18]"
           />
         </motion.div>
       </div>
