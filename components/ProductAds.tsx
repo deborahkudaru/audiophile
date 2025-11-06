@@ -33,11 +33,10 @@ export default function ProductAds() {
         animate={zx9InView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Decorative circles */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-white/20 z-0"></div>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border border-white/25 z-0"></div>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] rounded-full border border-white/30 z-0"></div>
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[150px] h-[150px] rounded-full border border-white/35 z-0"></div>
+        {/* Decorative circles - centered on mobile, behind image on desktop */}
+        <div className="absolute left-1/2 lg:left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full border border-white/10 z-0"></div>
+        <div className="absolute left-1/2 lg:left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full border border-white/10 z-0"></div>
+        <div className="absolute left-1/2 lg:left-1/4 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] rounded-full border border-white/10 z-0"></div>
 
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 30 }}
@@ -95,6 +94,7 @@ export default function ProductAds() {
           alt="ZX7 Speaker"
           fill
           className="object-cover"
+          style={{ transform: "scaleX(-1)" }}
         />
 
         <motion.div
