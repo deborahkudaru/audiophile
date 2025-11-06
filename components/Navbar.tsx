@@ -2,7 +2,7 @@
 
 import CartIcon from "@/public/icons/CartIcon";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CartModal from "./CartModal";
 import { motion, AnimatePresence } from "framer-motion";
 import ArrowRightIcon from "@/public/icons/Arrow";
@@ -38,74 +38,94 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  // Prevent background scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileMenuOpen]);
+
   return (
     <div className="bg-dark relative">
-      <nav className="flex justify-between text-white py-6 items-center px-5 md:px-10 lg:px-20 border-b border-white/10">
-        <button
-          className="lg:hidden z-10"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="hover:scale-110 transition-transform"
+      {/* Add spacing at the top for mobile */}
+      <div className="pt-4 lg:pt-0 px-5 md:px-10 lg:px-20">
+        <nav className="flex justify-between text-white py-6 items-center border-b border-white/10">
+          <button
+            className="lg:hidden z-10"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            <path
-              d="M3 12H21M3 6H21M3 18H21"
-              stroke="white"
-              strokeWidth="2"
-              strokeLinecap="round"
-            />
-          </svg>
-        </button>
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              className="hover:scale-110 transition-transform"
+            >
+              <path
+                d="M3 12H21M3 6H21M3 18H21"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
 
-        <div className="absolute lg:static md:left-28 left-1/2 -translate-x-1/2 md:transform-none md:ml-8">
-          <Link
-            href="/"
-            className="font-bold text-2xl md:text-xl tracking-wider hover:text-primary transition-colors block whitespace-nowrap"
-          >
-            audiophile
-          </Link>
-        </div>
-
-        <ul className="hidden lg:flex gap-8 font-bold text-[13px] tracking-widest">
-          <li>
-            <Link href="/" className="hover:text-primary transition">
-              HOME
+          <div className="absolute lg:static md:left-28 left-1/2 -translate-x-1/2 md:transform-none md:ml-8">
+            <Link
+              href="/"
+              className="font-bold text-2xl md:text-xl tracking-wider hover:text-primary transition-colors block whitespace-nowrap"
+            >
+              audiophile
             </Link>
-          </li>
-          <li>
-            <Link href="/headphones" className="hover:text-primary transition">
-              HEADPHONES
-            </Link>
-          </li>
-          <li>
-            <Link href="/speakers" className="hover:text-primary transition">
-              SPEAKERS
-            </Link>
-          </li>
-          <li>
-            <Link href="/earphones" className="hover:text-primary transition">
-              EARPHONES
-            </Link>
-          </li>
-        </ul>
-
-        <button
-          onClick={() => setIsCartOpen(!isCartOpen)}
-          className="hover:opacity-70 transition"
-        >
-          <div className="relative">
-            <CartIcon />
-            {cart.length > 0 && (
-              <div className="absolute top-0 right-0 w-3 h-3 bg-orange-500 rounded-full" />
-            )}
           </div>
-        </button>
-      </nav>
+
+          <ul className="hidden lg:flex gap-8 font-bold text-[13px] tracking-widest">
+            <li>
+              <Link href="/" className="hover:text-primary transition">
+                HOME
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/headphones"
+                className="hover:text-primary transition"
+              >
+                HEADPHONES
+              </Link>
+            </li>
+            <li>
+              <Link href="/speakers" className="hover:text-primary transition">
+                SPEAKERS
+              </Link>
+            </li>
+            <li>
+              <Link href="/earphones" className="hover:text-primary transition">
+                EARPHONES
+              </Link>
+            </li>
+          </ul>
+
+          <button
+            onClick={() => setIsCartOpen(!isCartOpen)}
+            className="hover:opacity-70 transition"
+          >
+            <div className="relative">
+              <CartIcon />
+              {cart.length > 0 && (
+                <div className="absolute top-0 right-0 w-3 h-3 bg-orange-500 rounded-full" />
+              )}
+            </div>
+          </button>
+        </nav>
+      </div>
 
       <AnimatePresence>
         {isMobileMenuOpen && (
@@ -130,8 +150,8 @@ export default function Navbar() {
               }}
               className="fixed top-[73px] left-0 right-0 bg-white z-50 lg:hidden overflow-hidden shadow-2xl"
             >
-              {/* Product Categories - Responsive Height */}
-              <div className="px-6 py-14 md:py-12">
+              {/* Product Categories - Scrollable content */}
+              <div className="px-6 py-14 md:py-12 max-h-[80vh] overflow-y-auto">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4 w-full max-w-6xl mx-auto">
                   {categories.map((category, index) => (
                     <motion.div
